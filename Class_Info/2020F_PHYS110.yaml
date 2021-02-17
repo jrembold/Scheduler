@@ -1,0 +1,66 @@
+calendar_info:
+    start_date: !!timestamp '2020-8-24'
+    end_date: !!timestamp '2020-11-24'
+    class_days:
+        - 0
+        - 2
+        - 4
+    #holiday_dates: {}
+    extra_dates:
+      - !!timestamp '2020-12-02'
+
+topics:
+    type: topics
+    values:
+        - {ch: 1  , description: "Science and the Universe"            , duration: 1}
+        - {ch: 2  , description: "Observing the Sky" , duration: 3}
+        - {ch: 3  , description: "Orbits and Gravity"     , duration: 2}
+        - {ch: 4  , description: "Earth and Sky"                            , duration: 2}
+        - {ch: 5  , description: "Radiation and Spectra"                      , duration: 3}
+        - {ch: 6  , description: "Astronomical Instruments"            , duration: 1}
+          # Part 2
+        - {ch: 7  , description: "Intro to the Solar System"              , duration: 1}
+        - {ch: 8  , description: "Earth as a Planet"   , duration: 1}
+        - {ch: 9  , description: "Cratered Worlds"   , duration: 1}
+        - {ch: 11 , description: "The Giant Planets" , duration: 1}
+        - {ch: 12 , description: "Rings, Moons, and Pluto"               , duration: 1}
+        - {ch: 13 , description: "Comets and Asteroids"            , duration: 1}
+        - {ch: 14 , description: "Origins of the Solar System"            , duration: 2}
+          # Part 3
+        - {ch: 15 , description: "A Garden Variety Star"            , duration: 2}
+        - {ch: 16 , description: "A Nuclear Powerhouse"            , duration: 1}
+        - {ch: 17 , description: "Analyzing Starlight"            , duration: 1}
+        - {ch: 18 , description: "A Celestial Census"            , duration: 1}
+        - {ch: 19 , description: "Celestial Distances"            , duration: 1}
+        - {ch: 21 , description: "Birth of Stars"            , duration: 1}
+        - {ch: 22 , description: "Adolescence to Old Age"            , duration: 1}
+        - {ch: 23 , description: "Death of Stars"            , duration: 1}
+        - {ch: 24 , description: "Black Holes and Curved Spacetime"            , duration: 1}
+          # Part 4
+        - {ch: 25 , description: "The Milky Way Galaxy"            , duration: 2}
+        - {ch: 26 , description: "Galaxies"            , duration: 2}
+        - {ch: 29 , description: "The Big Bang"            , duration: 2}
+        - {ch: 30 , description: "Life in the Universe"            , duration: 1}
+
+tests:
+    type: fixed date
+    important: yes
+    values:
+        - {description: "Exam 1 (Ch 1-6)", date: !!timestamp 2020-9-25}
+        - {description: "Exam 2 (Ch 7-14)", date: !!timestamp 2020-10-16}
+        - {description: "Exam 3 (Ch 15-24)", date: !!timestamp 2020-11-6}
+        - {description: "Final", date: !!timestamp 2020-12-02}
+
+outputs:
+    html:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+    latex:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description

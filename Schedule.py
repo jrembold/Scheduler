@@ -14,13 +14,14 @@ class Calendar:
             date += dt.timedelta(1)
 
     def __repr__(self):
-        output = ''
+        output = ""
         weeks_included = []
+        self.days.sort(key=lambda day: day.date)
         for day in self.days:
             if day.weeknum not in weeks_included:
-                output += '-'*23 + '\n'
+                output += "-" * 23 + "\n"
                 weeks_included.append(day.weeknum)
-            output += str(day) + '\n'
+            output += str(day) + "\n"
         return output
 
     def add_extra_days(self, date_list):
@@ -35,13 +36,15 @@ class Calendar:
     def assign_fixed(self, fixed_list, is_important=False):
         for activity in fixed_list:
             idx = [day.date for day in self.days].index(activity["date"])
-            self.days[idx].assign_topic(Topic(**activity, duration=1, important=is_important))
+            self.days[idx].assign_topic(
+                Topic(**activity, duration=1, important=is_important)
+            )
 
     def assign_topics(self, topic_list):
         __days = self.days.copy()
         __topics = topic_list.copy()
         for t in __topics:
-            for _ in range(t['duration']):
+            for _ in range(t["duration"]):
                 thisday = __days.pop(0)
                 while not thisday.hasclass or thisday.topic is not None:
                     thisday = __days.pop(0)
@@ -50,18 +53,23 @@ class Calendar:
 
     def assign_events(self, event_list):
         for event in event_list:
-            idx = [day.date for day in self.days].index(event["date"])
-            self.days[idx].assign_event(event['description'])
+            dates = [day.date for day in self.days]
+            if event["date"] not in dates:
+                self.days.append(Day(event["date"]))
+                dates = [day.date for day in self.days]
+            idx = dates.index(event["date"])
+            self.days[idx].assign_event(event["description"])
 
     def generate_html(self, columns):
-        '''Outputs an html table to the screen. This can then be piped to saved
+        """Outputs an html table to the screen. This can then be piped to saved
         however one might desire.
 
         This method feels cludgy and could almost certainly be greatly improved.
-        '''
+        """
+
         def format_Week(day):
             if new_week:
-                week_str = r"<td rowspan='3'>{}</td>".format(week_count)
+                week_str = r"<td rowspan='4'>{}</td>".format(week_count)
             else:
                 week_str = ""
             return week_str
@@ -77,14 +85,20 @@ class Calendar:
 
         def format_Description(day):
             if not day.hasclass:
-                return r"<td bgcolor=#005146>{}</td>".format(day.topic.description if day.topic else day.description)
-            if day.topic.is_important:
-                return r"<td bgcolor=#A20C00>{}</td>".format(day.topic.description if day.topic else day.description)
-            return r"<td>{}</td>".format(day.topic.description)
+                return r"<td bgcolor=#005146>{}</td>".format(
+                    day.topic.description if day.topic else day.description
+                )
+            if day.topic and day.topic.is_important:
+                return r"<td bgcolor=#A20C00>{}</td>".format(
+                    day.topic.description if day.topic else day.description
+                )
+            if day.topic:
+                return r"<td>{}</td>".format(day.topic.description)
+            return r"<td></td>"
 
         def format_Event(day):
-            if len(day.events)>0:
-                return r"<td>{}</td>".format(', '.join(day.events))
+            if len(day.events) > 0:
+                return r"<td>{}</td>".format(", ".join(day.events))
             return "<td></td>"
 
         def print_day(day):
@@ -98,7 +112,7 @@ class Calendar:
             }
             if new_week:
                 if week_count > 0:
-                    print("</tr>")
+                    print("</tbody>")
                 print("<tbody>")
             print("<tr>")
             for column in columns:
@@ -106,7 +120,7 @@ class Calendar:
                     print(func_lookup[column](day))
             print("</tr>\n")
             # if day.weekday == 'Friday':
-                # print("</tbody>\n")
+            # print("</tbody>\n")
 
         def print_header():
             print("<tr>")
@@ -114,9 +128,9 @@ class Calendar:
                 print(r"<th>{}</th>".format(c))
             print("</tr>")
 
-
-        print('+++')
-        print("title = \"Semester's Schedule\"")
+        self.days.sort(key=lambda day: day.date)
+        print("+++")
+        print('title = "Semester\'s Schedule"')
         print("date = 2019-08-21")
         print("+++")
         print("<br>")
@@ -129,7 +143,7 @@ class Calendar:
             new_week = False
             if day.weeknum not in class_weeks:
                 class_weeks.append(day.weeknum)
-                new_week =True
+                new_week = True
                 week_count += 1
             print_day(day)
         print("</tbody>")
@@ -155,14 +169,20 @@ class Calendar:
 
         def format_Description(day):
             if not day.hasclass:
-                return r"\emph{{{}}}".format(day.topic.description if day.topic else day.description)
-            if day.topic.is_important:
-                return r"\textbf{{{}}}".format(day.topic.description if day.topic else day.description)
-            return day.topic.description
+                return r"\emph{{{}}}".format(
+                    day.topic.description if day.topic else day.description
+                )
+            if day.topic and day.topic.is_important:
+                return r"\textbf{{{}}}".format(
+                    day.topic.description if day.topic else day.description
+                )
+            if day.topic:
+                return day.topic.description
+            return ""
 
         def format_Event(day):
-            if len(day.events)>0:
-                return ', '.join(day.events)
+            if len(day.events) > 0:
+                return ", ".join(day.events)
             return ""
 
         def format_row(day):
@@ -191,13 +211,15 @@ class Calendar:
             row += r" \\"
             return row
 
-        print(r"\documentclass{standalone}")
-        print(r"\usepackage{booktabs,multirow}")
+        self.days.sort(key=lambda day: day.date)
+        print(r"\documentclass[varwidth]{standalone}")
+        print(r"\usepackage{booktabs,multirow,longtable}")
         print(r"\begin{document}")
-        print(r"\begin{tabular}{ccccc}")
+        print(r"\begin{longtable}{ccccc}")
         print(r"\toprule")
         print(make_header())
         print(r"\midrule")
+        print(r"\endhead")
         week_count = 1
         for day in self.days:
             print(format_row(day))
@@ -205,15 +227,17 @@ class Calendar:
                 week_count += 1
                 print(r"\midrule")
         print(r"\bottomrule")
-        print(r"\end{tabular}")
+        print(r"\end{longtable}")
         print(r"\end{document}")
 
 
 class Day:
     semester_start_week = 0
+
     def __init__(self, date):
         self.date = date
         self.hasclass = True
+        self.holiday = False
         self.weekday = date.strftime("%A")
         self.weeknum = int(date.strftime("%W"))
         if self.semester_start_week == 0:
@@ -230,24 +254,32 @@ class Day:
             msg = self.description
         else:
             msg = ""
-        return f'{self.weekday:10s} ({self.date}): {msg}'
+        if len(self.events) > 0:
+            due = '(' + ', '.join(self.events) + ')'
+        else:
+            due = ""
+        return f"{self.weekday:10s} ({self.date}): {msg:40s} {due}"
 
     def day_off(self, description):
-        '''Makes a day a holiday!'''
+        """Makes a day a holiday!"""
         self.hasclass = False
         self.description = description
+        self.holidary = True
 
     def assign_topic(self, topic):
-        '''Assigns a topic to a day and updates the topic'''
+        """Assigns a topic to a day and updates the topic"""
         self.topic = topic
         topic.set_day(self.date)
 
     def assign_event(self, event_name):
-        '''Adds an event to a given day'''
+        """Adds an event to a given day"""
         self.events.append(event_name)
 
+
 class Topic:
-    def __init__(self, description, duration, date=None, ch=None, important=False, **kwargs):
+    def __init__(
+        self, description, duration, date=None, ch=None, important=False, **kwargs
+    ):
         self.chapter = ch
         self.description = description
         self.duration = duration
@@ -258,12 +290,12 @@ class Topic:
             self.days = []
 
     def set_day(self, date):
-        '''Set days a topic is assigned to be covered.'''
+        """Set days a topic is assigned to be covered."""
         self.days.append(date)
 
 
 def read_config(filename: str) -> dict:
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         config = yaml.full_load(f)
     return config
 
@@ -271,23 +303,24 @@ def read_config(filename: str) -> dict:
 def main(filename):
     config = read_config(filename)
     C = Calendar(
-            config['calendar_info']['start_date'],
-            config['calendar_info']['end_date'],
-            config['calendar_info']['class_days']
-            )
-    C.add_extra_days(config['calendar_info']['extra_dates'])
-    C.assign_holidays(config['calendar_info']['holiday_dates'])
+        config["calendar_info"]["start_date"],
+        config["calendar_info"]["end_date"],
+        config["calendar_info"]["class_days"],
+    )
+    if "extra_dates" in config["calendar_info"]:
+        C.add_extra_days(config["calendar_info"]["extra_dates"])
+    if "holiday_dates" in config["calendar_info"]:
+        C.assign_holidays(config["calendar_info"]["holiday_dates"])
     for key in config:
-        if config[key].get('type', None) == 'fixed date':
-            C.assign_fixed(config[key]['values'], config[key].get('important',False))
+        if config[key].get("type", None) == "fixed date":
+            C.assign_fixed(config[key]["values"], config[key].get("important", False))
     for key in config:
-        if config[key].get('type', None) == 'topics':
-            C.assign_topics(config[key]['values'])
+        if config[key].get("type", None) == "topics":
+            C.assign_topics(config[key]["values"])
     for key in config:
-        if config[key].get('type', None) == 'event':
-            C.assign_events(config[key]['values'])
+        if config[key].get("type", None) == "event":
+            C.assign_events(config[key]["values"])
     return C, config
-
 
 
 if __name__ == "__main__":
@@ -303,10 +336,10 @@ if __name__ == "__main__":
     args = ap.parse_args()
 
     calendar, config = main(args.class_config)
-    
+
     if args.latex:
-        calendar.generate_latex(config['outputs']['latex']['columns'])
+        calendar.generate_latex(config["outputs"]["latex"]["columns"])
     elif args.html:
-        calendar.generate_html(config['outputs']['html']['columns'])
+        calendar.generate_html(config["outputs"]["html"]["columns"])
     else:
         print(calendar)

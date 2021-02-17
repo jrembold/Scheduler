@@ -1,0 +1,85 @@
+calendar_info:
+    start_date: !!timestamp '2020-8-24'
+    end_date: !!timestamp '2020-11-24'
+    class_days:
+        - 0
+        - 2
+        - 4
+    #holiday_dates: {}
+    extra_dates:
+      - !!timestamp '2020-12-02'
+
+topics:
+    type: topics
+    values:
+        - {ch: 1    , description: "Introducing Python"           , duration: 2}
+        - {ch: 2    , description: "Control Statements"           , duration: 2}
+        - {ch: 3    , description: "Simple Graphics"              , duration: 2}
+        - {ch: 4    , description: "Functions"                    , duration: 2}
+        - {ch: 5    , description: "Writing Interactive Programs" , duration: 4}
+        - {ch: 6    , description: "Strings"                      , duration: 4}
+        - {ch: 7    , description: "Lists"                        , duration: 5}
+        - {ch: 8    , description: "Algorithmic Analysis"         , duration: 3}
+        - {ch: 9.1--9.2    , description: "Classes and Objects"          , duration: 2}
+        - {ch: 10.3--10.5   , description: "Inheritance"                  , duration: 2}
+        - {ch:      , description: "The Enigma Machine"           , duration: 1}
+        - {ch: 11.1--11.3   , description: "Dictionaries and Hashing"     , duration: 2}
+        - {ch: 12   , description: "Designing Data Structures"    , duration: 2}
+        - {ch:      , description: "The Adventure Project"        , duration: 1}
+        - {ch: 11.4 , description: "Sets"                         , duration: 2}
+        - {ch: 9.4  , description: "Object Linking"               , duration: 2}
+        - {ch:      , description: "Cool Algorithms and Looking Ahead"                , duration: 1}
+
+#compdays:
+    #type: fixed date
+    #values:
+        #- {description: "CompDay 1: Intro"                          , date: !!timestamp 2020-8-31}
+        #- {description: "CompDay 2: Projectile Motion"              , date: !!timestamp 2020-9-7}
+        #- {description: "CompDay 3: Rockets"                        , date: !!timestamp 2020-9-14}
+        #- {description: "CompDay 4: Sympy and Energy"               , date: !!timestamp 2020-9-21}
+        #- {description: "CompDay 5: 2D Oscillators"                 , date: !!timestamp 2020-9-28}
+        #- {description: "CompDay 6: Fourier Series"                 , date: !!timestamp 2020-10-5}
+        #- {description: "CompDay 7: Lagrangians with Sympy"         , date: !!timestamp 2020-10-12}
+        #- {description: "CompDay 8: Binar Star Orbits"              , date: !!timestamp 2020-10-19}
+        #- {description: "CompDay 9: Hohmann Transfers"              , date: !!timestamp 2020-10-26}
+        #- {description: "CompDay 10: Coriolis Merry-Go-Round"       , date: !!timestamp 2020-11-2}
+        #- {description: "CompDay 11: Inertial Tensors"              , date: !!timestamp 2020-11-9}
+        #- {description: "CompDay 12: Visualizing Oscillation Modes" , date: !!timestamp 2020-11-16}
+
+tests:
+    type: fixed date
+    important: yes
+    values:
+        - {description: "Midterm" , date: !!timestamp 2020-10-12}
+        - {description: "Final" , date: !!timestamp 2020-12-2}
+
+homework:
+    type: event
+    values:
+        - {description: "Problem Set 1"        , date: !!timestamp 2020-9-4}
+        - {description: "Problem Set 2"        , date: !!timestamp 2020-9-11}
+        - {description: "Problem Set 3"        , date: !!timestamp 2020-9-18}
+        - {description: "Project 1"        , date: !!timestamp 2020-9-25}
+        - {description: "Problem Set 4"        , date: !!timestamp 2020-10-2}
+        - {description: "Project 2"        , date: !!timestamp 2020-10-9}
+        - {description: "Problem Set 5"        , date: !!timestamp 2020-10-16}
+        - {description: "Project 3"        , date: !!timestamp 2020-10-23}
+        - {description: "Problem Set 6"        , date: !!timestamp 2020-10-30}
+        - {description: "Project 4"        , date: !!timestamp 2020-11-13}
+        - {description: "Project 5"        , date: !!timestamp 2020-11-23}
+
+outputs:
+    html:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
+    latex:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due

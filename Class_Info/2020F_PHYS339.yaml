@@ -1,0 +1,91 @@
+calendar_info:
+    start_date: !!timestamp '2020-8-24'
+    end_date: !!timestamp '2020-11-24'
+    class_days:
+        - 0
+        - 2
+        - 4
+    #holiday_dates: {}
+    #extra_dates: []
+
+topics:
+    type: topics
+    values:
+        - {ch: 1  , description: "Newtons Laws of Motion"            , duration: 2}
+        - {ch: 2  , description: "Projectiles and Charges Particles" , duration: 2}
+        - {ch: 3  , description: "Momentum and Angular Momentum"     , duration: 2}
+        - {ch: 4  , description: "Energy"                            , duration: 3}
+        - {ch: 5  , description: "Oscillations"                      , duration: 2}
+        - {ch: 6  , description: "Calculus of Variations"            , duration: 1}
+        - {ch: 7  , description: "Lagrange's Equations"              , duration: 4}
+        - {ch: 8  , description: "Two-Body Central Force Problems"   , duration: 2}
+        - {ch: 9  , description: "Mechanics in Noninertial Frames"   , duration: 2}
+        - {ch: 10 , description: "Rotational Motion of Rigid Bodies" , duration: 4}
+        - {ch: 11 , description: "Coupled Oscillators"               , duration: 3}
+        - {ch:    , description: "Final Project Readings"            , duration: 1}
+
+compdays:
+    type: fixed date
+    values:
+        - {description: "CompDay 1: Intro"                          , date: !!timestamp 2020-8-31}
+        - {description: "CompDay 2: Projectile Motion"              , date: !!timestamp 2020-9-7}
+        - {description: "CompDay 3: Rockets"                        , date: !!timestamp 2020-9-14}
+        - {description: "CompDay 4: Sympy and Energy"               , date: !!timestamp 2020-9-21}
+        - {description: "CompDay 5: 2D Oscillators"                 , date: !!timestamp 2020-9-28}
+        - {description: "CompDay 6: Fourier Series"                 , date: !!timestamp 2020-10-5}
+        - {description: "CompDay 7: Lagrangians with Sympy"         , date: !!timestamp 2020-10-12}
+        - {description: "CompDay 8: Binar Star Orbits"              , date: !!timestamp 2020-10-19}
+        - {description: "CompDay 9: Hohmann Transfers"              , date: !!timestamp 2020-10-26}
+        - {description: "CompDay 10: Coriolis Merry-Go-Round"       , date: !!timestamp 2020-11-2}
+        - {description: "CompDay 11: Inertial Tensors"              , date: !!timestamp 2020-11-9}
+        - {description: "CompDay 12: Visualizing Oscillation Modes" , date: !!timestamp 2020-11-16}
+
+#tests:
+    #type: fixed date
+    #important: yes
+    #values:
+        #- {description: "Midterm Due", date: !!timestamp 2020-10-05}
+
+homework:
+    type: event
+    values:
+        - {description: "HW1"        , date: !!timestamp 2020-8-31} 
+        - {description: "CompDay 1"  , date: !!timestamp 2020-9-2} 
+        - {description: "HW2"        , date: !!timestamp 2020-9-7}  
+        - {description: "CompDay 2"  , date: !!timestamp 2020-9-9}  
+        - {description: "HW3"        , date: !!timestamp 2020-9-14} 
+        - {description: "CompDay 3"  , date: !!timestamp 2020-9-16} 
+        - {description: "HW4"        , date: !!timestamp 2020-9-21} 
+        - {description: "CompDay 4"  , date: !!timestamp 2020-9-23} 
+        - {description: "HW5"        , date: !!timestamp 2020-9-28} 
+        - {description: "CompDay 5"  , date: !!timestamp 2020-9-30} 
+        - {description: "HW6"        , date: !!timestamp 2020-10-5}  
+        - {description: "CompDay 6"  , date: !!timestamp 2020-10-7}  
+        - {description: "CompDay 7"  , date: !!timestamp 2020-10-14} 
+        - {description: "HW7"        , date: !!timestamp 2020-10-19} 
+        - {description: "CompDay 8"  , date: !!timestamp 2020-10-28}  
+        - {description: "HW8"        , date: !!timestamp 2020-10-26} 
+        - {description: "CompDay 9"  , date: !!timestamp 2020-10-28}  
+        - {description: "HW9"        , date: !!timestamp 2020-11-2}  
+        - {description: "CompDay 10" , date: !!timestamp 2020-11-4}  
+        - {description: "CompDay 11" , date: !!timestamp 2020-11-11} 
+        - {description: "HW10"       , date: !!timestamp 2020-11-16} 
+        - {description: "CompDay 12" , date: !!timestamp 2020-11-18} 
+        - {description: "HW11"       , date: !!timestamp 2020-11-23} 
+        - {description: "Midterm"    , date: !!timestamp 2020-10-21} 
+
+outputs:
+    html:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
+    latex:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
