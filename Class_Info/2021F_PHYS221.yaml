@@ -1,0 +1,81 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2021-08-30'
+  end_date: !!timestamp '2021-12-10'
+  class_days: [0, 2, 4]
+  holiday_dates:
+    !!timestamp 2021-09-06: Labor Day
+    !!timestamp 2021-10-15: Mid-Semester Day
+    !!timestamp 2021-11-22: Fall Break
+    !!timestamp 2021-11-23: Fall Break
+    !!timestamp 2021-11-24: Fall Break
+    !!timestamp 2021-11-25: Fall Break
+    !!timestamp 2021-11-26: Fall Break
+  extra_dates:
+    - !!timestamp 2021-12-17
+
+topics:
+  type: topics
+  values:
+    - {ch: 1, description: "Interactions and Motion", duration: 2}
+    - {ch: 2, description: "The Momentum Principle", duration: 3}
+    - {ch: 3, description: "The Fundamental Interactions", duration: 3}
+    - {ch: 4, description: "Contact Interactions", duration: 3}
+    - {ch: 5, description: "Determining Forces from Motion", duration: 5}
+    - {ch: 6, description: "The Energy Principle", duration: 4}
+    - {ch: 7, description: "Internal Energy", duration: 2}
+    - {ch: 8, description: "Energy Quantization", duration: 2}
+    - {ch: 9, description: "Trans, Rot, and Vibrational Energy", duration: 3}
+    #- {ch: , description: "Catch-up Day", duration: 1}
+    - {ch: 10, description: "Collisions", duration: 1}
+    - {ch: 11, description: "Angular Momentum", duration: 4}
+    - {ch: 12, description: "Entropy: Limits on the Possible", duration: 4}
+    - {ch: , description: "Semester Review", duration: 1}
+
+
+tests:
+  type: fixed date
+  important: yes
+  values:
+    - {description: Test 1 (Ch 1-2), date: !!timestamp 2021-9-17 }
+    - {description: Test 2 (Ch 3-5), date: !!timestamp 2021-10-13 }
+    - {description: Test 3 (Ch 6-9), date: !!timestamp 2021-11-12 }
+    - {description: Final,  date: !!timestamp 2021-12-17 }
+
+
+labs:
+  type: event
+  values:
+    - {description: 'Pre-Test \& Intro to Python', date: !!timestamp 2021-9-2}
+    - {description: 'Intro to Python continued', date: !!timestamp 2021-9-9}
+    - {description: 'Intro to Glowscript Visualization', date: !!timestamp 2021-9-16}
+    - {description: 'Simulating Free Fall', date: !!timestamp 2021-9-23}
+    - {description: 'Experimenting with Free Fall', date: !!timestamp 2021-9-30}
+    - {description: 'Space Voyage 1', date: !!timestamp 2021-10-7}
+    - {description: 'Space Voyage 2', date: !!timestamp 2021-10-14}
+    - {description: 'Free Week / Make up labs', date: !!timestamp 2021-10-21}
+    - {description: 'Carts and Darts', date: !!timestamp 2021-10-28}
+    - {description: 'Carts and Darts', date: !!timestamp 2021-11-4}
+    - {description: 'Pendulum Lab (Part 1)', date: !!timestamp 2021-11-11}
+    - {description: 'Pendulum Lab (Part 2)', date: !!timestamp 2021-11-18}
+    - {description: 'Pendulum Lab (Part 3)', date: !!timestamp 2021-12-2}
+    - {description: 'Post-Test', date: !!timestamp 2021-12-9}
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+      - Lab
+  latex:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+      - Lab
+

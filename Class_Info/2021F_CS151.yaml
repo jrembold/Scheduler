@@ -1,0 +1,82 @@
+calendar_info:
+    start_date: !!timestamp '2021-8-30'
+    end_date: !!timestamp '2021-12-10'
+    class_days:
+        - 0 # Monday
+        - 2 # Wednesday
+        - 4 # Friday
+    holiday_dates:
+      !!timestamp '2021-09-06': "Labor Day"
+      !!timestamp '2021-10-15': "Mid-Semester Day"
+      !!timestamp '2021-11-22': "Fall Break"
+      !!timestamp '2021-11-23': "Fall Break"
+      !!timestamp '2021-11-24': "Fall Break"
+      !!timestamp '2021-11-25': "Fall Break"
+      !!timestamp '2021-11-26': "Fall Break"
+    extra_dates:
+      - !!timestamp '2021-12-17'
+      #- !!timestamp '2021-12-14'
+
+topics:
+    type: topics
+    values:
+        - {ch:      , description: "Karel the Robot"              , duration: 3}
+        - {ch: 1    , description: "Introducing Python"           , duration: 1}
+        - {ch: 2    , description: "Control Statements"           , duration: 1}
+        - {ch: 3    , description: "Simple Graphics"              , duration: 2}
+        - {ch: 4    , description: "Functions"                    , duration: 2}
+        - {ch: 5    , description: "Writing Interactive Programs" , duration: 4}
+        - {ch: 6    , description: "Strings"                      , duration: 4}
+        #- {ch: 4.7  , description: "Recursion"                    , duration: 1}
+        - {ch: 7    , description: "Lists"                        , duration: 5}
+        - {ch: 9.1--9.2    , description: "Classes and Objects"          , duration: 2}
+        - {ch: 10.3--10.5   , description: "Inheritance"                  , duration: 2}
+        - {ch:      , description: "The Enigma Machine"           , duration: 1}
+        - {ch: 11.1--11.3   , description: "Dictionaries and Hashing"     , duration: 2}
+        - {ch: 12   , description: "Designing Data Structures"    , duration: 2}
+        - {ch: 11.4 , description: "Sets"                         , duration: 2}
+        - {ch:      , description: "The Adventure Project"        , duration: 1}
+        - {ch: 8    , description: "Algorithmic Analysis"         , duration: 3}
+        #- {ch: 9.4  , description: "Object Linking"               , duration: 1}
+        - {ch:      , description: "Fun Libraries          "      , duration: 1}
+        - {ch:      , description: "Cool Algorithms and Looking Ahead"                , duration: 1}
+
+tests:
+    type: fixed date
+    important: yes
+    values:
+        - {description: "Midterm" , date: !!timestamp 2021-10-22}
+        - {description: "Final" , date: !!timestamp 2021-12-17}
+
+homework:
+    type: event
+    values:
+        - {description: "Problem Set 0"        , date: !!timestamp 2021-9-5}
+        - {description: "Problem Set 1"        , date: !!timestamp 2021-9-12}
+        - {description: "Problem Set 2"        , date: !!timestamp 2021-9-19}
+        - {description: "Problem Set 3"        , date: !!timestamp 2021-9-26}
+        - {description: "Project 1"        , date: !!timestamp 2021-10-3}
+        - {description: "Problem Set 4"        , date: !!timestamp 2021-10-10}
+        - {description: "Graphics Contest"        , date: !!timestamp 2021-10-24}
+        - {description: "Project 2"        , date: !!timestamp 2021-10-17}
+        - {description: "Problem Set 5"        , date: !!timestamp 2021-10-31}
+        - {description: "Project 3"        , date: !!timestamp 2021-11-7}
+        - {description: "Bonus Problem Set 6"        , date: !!timestamp 2021-11-14}
+        - {description: "Project 4"        , date: !!timestamp 2021-11-19}
+        - {description: "Project 5"        , date: !!timestamp 2021-12-10}
+
+outputs:
+    html:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
+    latex:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due

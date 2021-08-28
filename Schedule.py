@@ -1,22 +1,50 @@
 import datetime as dt
 import argparse
 import yaml
-import textwrap
+from typing import TypedDict
+
+# Type hinting classes or aliases
+Date = dt.datetime
+
+
+class Event(TypedDict):
+    description: str
+    date: Date
+
+
+class TopicType(TypedDict):
+    ch: str
+    description: str
+    duration: int
+
+
+# Main code
 
 
 class Calendar:
-    def __init__(self, start, end, classdays):
+    """
+    Creates a new calendar object, in which a schedule is stored.
+    """
+
+    def __init__(self, start: Date, end: Date, classdays: list[int]) -> None:
+        """
+        Initializes a list of Days corresponding to class days.
+        """
         date = start
-        self.days = []
+        self.days = []  # type: list[Day]
         while date <= end:
             if date.weekday() in classdays:
                 self.days.append(Day(date))
             date += dt.timedelta(1)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """
+        Prints out a nice ascii summary of the schedule.
+        """
         output = ""
-        weeks_included = []
+        # Sort since days may have been added out of order
         self.days.sort(key=lambda day: day.date)
+        weeks_included = []  # type: list[int]
         for day in self.days:
             if day.weeknum not in weeks_included:
                 output += "-" * 23 + "\n"
@@ -24,23 +52,37 @@ class Calendar:
             output += str(day) + "\n"
         return output
 
-    def add_extra_days(self, date_list):
+    def add_extra_days(self, date_list: list[Date]) -> None:
+        """
+        Adds extra dates to the schedule. Frequently non-lecture
+        days as they should have already been added initially.
+        """
         self.days.extend([Day(d) for d in date_list])
 
-    def assign_holidays(self, vacation_dict):
-        # Set certain days to holidays
+    def assign_holidays(self, vacation_dict: dict[Date, str]) -> None:
+        """
+        Sets specified days already in calendar to vacation days.
+        """
         for day in self.days:
             if day.date in vacation_dict.keys():
                 day.day_off(vacation_dict[day.date])
 
-    def assign_fixed(self, fixed_list, is_important=False):
+    def assign_fixed(self, fixed_list: list[Event], is_important: bool = False) -> None:
+        """
+        Assigns activities which come on determined dates (like tests) to the
+        correct date on the calendar.
+        """
         for activity in fixed_list:
             idx = [day.date for day in self.days].index(activity["date"])
             self.days[idx].assign_topic(
                 Topic(**activity, duration=1, important=is_important)
             )
 
-    def assign_topics(self, topic_list):
+    def assign_topics(self, topic_list: list[TopicType]) -> None:
+        """
+        Goes through the list of topics and assigns the correct number of
+        available days to each topic in sequential order.
+        """
         __days = self.days.copy()
         __topics = topic_list.copy()
         for t in __topics:
@@ -51,7 +93,12 @@ class Calendar:
                 idx = self.days.index(thisday)
                 self.days[idx].assign_topic(Topic(**t))
 
-    def assign_events(self, event_list):
+    def assign_events(self, event_list: list[Event]) -> None:
+        """
+        Adds extra events to the calendar. These are not generally lecture
+        days, but instead things like homework deadlines, labs, or
+        announcements.
+        """
         for event in event_list:
             dates = [day.date for day in self.days]
             if event["date"] not in dates:
@@ -60,30 +107,30 @@ class Calendar:
             idx = dates.index(event["date"])
             self.days[idx].assign_event(event["description"])
 
-    def generate_html(self, columns):
+    def generate_html(self, columns: list[str]) -> None:
         """Outputs an html table to the screen. This can then be piped to saved
         however one might desire.
 
         This method feels cludgy and could almost certainly be greatly improved.
         """
 
-        def format_Week(day):
+        def format_Week() -> str:
             if new_week:
                 week_str = r"<td rowspan='4'>{}</td>".format(week_count)
             else:
                 week_str = ""
             return week_str
 
-        def format_Date(day):
+        def format_Date(day: Day) -> str:
             return r"<td>{}</td>".format(day.date.strftime("%b %d"))
 
-        def format_Chapter(day):
+        def format_Chapter(day: Day) -> str:
             if day.topic:
                 if day.topic.chapter:
                     return r"<td>Ch {}</td>".format(day.topic.chapter)
             return "<td></td>"
 
-        def format_Description(day):
+        def format_Description(day: Day) -> str:
             if not day.hasclass:
                 return r"<td bgcolor=#005146>{}</td>".format(
                     day.topic.description if day.topic else day.description
@@ -96,12 +143,12 @@ class Calendar:
                 return r"<td>{}</td>".format(day.topic.description)
             return r"<td></td>"
 
-        def format_Event(day):
+        def format_Event(day: Day) -> str:
             if len(day.events) > 0:
                 return r"<td>{}</td>".format(", ".join(day.events))
             return "<td></td>"
 
-        def print_day(day):
+        def print_day(day: Day) -> None:
             func_lookup = {
                 "Week": format_Week,
                 "Date": format_Date,
@@ -116,13 +163,16 @@ class Calendar:
                 print("<tbody>")
             print("<tr>")
             for column in columns:
-                if func_lookup[column](day):
+                # if func_lookup[column](day):
+                if column != "Week":
                     print(func_lookup[column](day))
+                else:
+                    print(format_Week())
             print("</tr>\n")
             # if day.weekday == 'Friday':
             # print("</tbody>\n")
 
-        def print_header():
+        def print_header() -> None:
             print("<tr>")
             for c in columns:
                 print(r"<th>{}</th>".format(c))
@@ -131,7 +181,7 @@ class Calendar:
         self.days.sort(key=lambda day: day.date)
         print("+++")
         print('title = "Semester\'s Schedule"')
-        print("date = 2019-08-21")
+        print("date =", dt.datetime.now().strftime("%Y-%m-%d"))
         print("+++")
         print("<br>")
         print("<center>")
@@ -150,24 +200,24 @@ class Calendar:
         print("</table>")
         print("</center>")
 
-    def generate_latex(self, columns):
-        def format_Week(day):
+    def generate_latex(self, columns: list[str]) -> None:
+        def format_Week(day: Day) -> str:
             if day.weekday == "Monday":
                 week_str = r"\multirow{{3}}{{*}}{{{}}}".format(week_count)
             else:
                 week_str = ""
             return week_str
 
-        def format_Date(day):
-            return day.date.strftime("%b %d")
+        def format_Date(day: Day) -> str:
+            return day.date.strftime("%a, %b %d")
 
-        def format_Chapter(day):
+        def format_Chapter(day: Day) -> str:
             if day.topic:
                 if day.topic.chapter:
                     return r"Ch {}".format(day.topic.chapter)
             return ""
 
-        def format_Description(day):
+        def format_Description(day: Day) -> str:
             if not day.hasclass:
                 return r"\emph{{{}}}".format(
                     day.topic.description if day.topic else day.description
@@ -180,12 +230,12 @@ class Calendar:
                 return day.topic.description
             return ""
 
-        def format_Event(day):
+        def format_Event(day: Day) -> str:
             if len(day.events) > 0:
                 return ", ".join(day.events)
             return ""
 
-        def format_row(day):
+        def format_row(day: Day) -> str:
             func_lookup = {
                 "Week": format_Week,
                 "Date": format_Date,
@@ -202,7 +252,7 @@ class Calendar:
             row += r" \\"
             return row
 
-        def make_header():
+        def make_header() -> str:
             row = r""
             for c in columns:
                 row += c
@@ -232,22 +282,29 @@ class Calendar:
 
 
 class Day:
+    """
+    Represents a single day in a calendar.
+    """
+
     semester_start_week = 0
 
-    def __init__(self, date):
+    def __init__(self, date: Date):
         self.date = date
         self.hasclass = True
         self.holiday = False
         self.weekday = date.strftime("%A")
-        self.weeknum = int(date.strftime("%W"))
+        self.weeknum = int(date.strftime("%U"))
         if self.semester_start_week == 0:
             Day.semester_start_week = self.weeknum
         self.semester_week = self.weeknum - self.semester_start_week + 1
         self.topic = None
         self.description = None
-        self.events = []
+        self.events = []  # type: list[str]
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """
+        Returns a string summary of what occurs or is scheduled for that day.
+        """
         if self.topic:
             msg = self.topic.description
         elif self.description:
@@ -255,30 +312,39 @@ class Day:
         else:
             msg = ""
         if len(self.events) > 0:
-            due = '(' + ', '.join(self.events) + ')'
+            due = "(" + ", ".join(self.events) + ")"
         else:
             due = ""
         return f"{self.weekday:10s} ({self.date}): {msg:40s} {due}"
 
-    def day_off(self, description):
+    def day_off(self, description: str):
         """Makes a day a holiday!"""
         self.hasclass = False
         self.description = description
         self.holidary = True
 
-    def assign_topic(self, topic):
+    def assign_topic(self, topic: "Topic"):
         """Assigns a topic to a day and updates the topic"""
         self.topic = topic
         topic.set_day(self.date)
 
-    def assign_event(self, event_name):
+    def assign_event(self, event_name: str):
         """Adds an event to a given day"""
         self.events.append(event_name)
 
 
 class Topic:
+    """
+    Represents a topic to be taught.
+    """
+
     def __init__(
-        self, description, duration, date=None, ch=None, important=False, **kwargs
+        self,
+        description: str,
+        duration: int,
+        date: Date = None,
+        ch: str = None,
+        important: bool = False,
     ):
         self.chapter = ch
         self.description = description
@@ -289,7 +355,7 @@ class Topic:
         else:
             self.days = []
 
-    def set_day(self, date):
+    def set_day(self, date: Date) -> None:
         """Set days a topic is assigned to be covered."""
         self.days.append(date)
 
@@ -300,7 +366,10 @@ def read_config(filename: str) -> dict:
     return config
 
 
-def main(filename):
+def main(filename: str) -> tuple[Calendar, dict]:
+    """
+    Reads in the given configuration file and generates the schedule.
+    """
     config = read_config(filename)
     C = Calendar(
         config["calendar_info"]["start_date"],
