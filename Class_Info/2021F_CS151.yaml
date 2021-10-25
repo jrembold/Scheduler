@@ -51,17 +51,17 @@ tests:
 homework:
     type: event
     values:
-        - {description: "Problem Set 0"        , date: !!timestamp 2021-9-5}
-        - {description: "Problem Set 1"        , date: !!timestamp 2021-9-12}
-        - {description: "Problem Set 2"        , date: !!timestamp 2021-9-19}
-        - {description: "Problem Set 3"        , date: !!timestamp 2021-9-26}
-        - {description: "Project 1"        , date: !!timestamp 2021-10-3}
-        - {description: "Problem Set 4"        , date: !!timestamp 2021-10-10}
-        - {description: "Graphics Contest"        , date: !!timestamp 2021-10-24}
-        - {description: "Project 2"        , date: !!timestamp 2021-10-17}
-        - {description: "Problem Set 5"        , date: !!timestamp 2021-10-31}
-        - {description: "Project 3"        , date: !!timestamp 2021-11-7}
-        - {description: "Bonus Problem Set 6"        , date: !!timestamp 2021-11-14}
+        - {description: "Problem Set 0"        , date: !!timestamp 2021-9-6}
+        - {description: "Problem Set 1"        , date: !!timestamp 2021-9-13}
+        - {description: "Problem Set 2"        , date: !!timestamp 2021-9-20}
+        - {description: "Problem Set 3"        , date: !!timestamp 2021-9-27}
+        - {description: "Project 1"        , date: !!timestamp 2021-10-4}
+        - {description: "Problem Set 4"        , date: !!timestamp 2021-10-11}
+        - {description: "Graphics Contest"        , date: !!timestamp 2021-10-29}
+        - {description: "Project 2"        , date: !!timestamp 2021-10-18}
+        - {description: "Problem Set 5"        , date: !!timestamp 2021-11-01}
+        - {description: "Project 3"        , date: !!timestamp 2021-11-8}
+        - {description: "Bonus Problem Set 6"        , date: !!timestamp 2021-11-15}
         - {description: "Project 4"        , date: !!timestamp 2021-11-19}
         - {description: "Project 5"        , date: !!timestamp 2021-12-10}
 
