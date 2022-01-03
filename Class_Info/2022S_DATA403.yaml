@@ -1,0 +1,67 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2022-01-10'
+  end_date: !!timestamp '2022-04-27'
+  class_days: [1, 3]
+  holiday_dates:
+    !!timestamp 2022-01-17: MLK Day
+    !!timestamp 2022-01-21: MLK Celebration
+    !!timestamp 2022-02-21: Mid-Semester Break
+    !!timestamp 2022-02-22: Mid-Semester Break
+    !!timestamp 2022-03-21: Spring Break
+    !!timestamp 2022-03-22: Spring Break
+    !!timestamp 2022-03-23: Spring Break
+    !!timestamp 2022-03-24: Spring Break
+    !!timestamp 2022-03-25: Spring Break
+    !!timestamp 2022-04-13: SSRD
+  extra_dates:
+    - !!timestamp 2022-05-06
+
+topics:
+  type: topics
+  values:
+    - {ch: 1, description: "First Database and Table", duration: 1}
+    - {ch: 2, description: "Using SELECT", duration: 1}
+    - {ch: 3, description: "Understanding Data Types", duration: 1}
+    - {ch: 4, description: "Importing and Exporting Data", duration: 1}
+    - {ch: 5, description: "Math and Stats with SQL", duration: 3}
+    - {ch: , description: "Adjustment Day", duration: 1}
+    - {ch: 6, description: "Joining Tables", duration: 3}
+    - {ch: 7, description: "Designing Tables", duration: 1}
+    - {ch: 8, description: "Grouping and Summarizing", duration: 1}
+    - {ch: 9, description: "Inspecting and Modifying Data", duration: 2}
+    #- {ch: 10, description: "Statistical Functions", duration: 1}
+    - {ch: 11, description: "Dates and Times", duration: 1}
+    - {ch: , description: "Adjustment Day", duration: 1}
+    - {ch: 12, description: "Advanced Queries", duration: 2}
+    - {ch: 13, description: "Mining Text", duration: 2}
+    - {ch: 14, description: "Spatial Data with POSTGIS", duration: 3}
+    - {ch: 15, description: "Views, Functions, and Triggers", duration: 1}
+    - {ch: 17, description: "Database Maintenance", duration: 1}
+
+
+tests:
+  type: fixed date
+  important: yes
+  values:
+    - {description: Test 1 (Ch 1-5), date: !!timestamp 2022-02-10 }
+    - {description: Test 2 (Ch 6-11), date: !!timestamp 2022-03-17 }
+    - {description: Final,  date: !!timestamp 2022-05-06 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+  latex:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+
