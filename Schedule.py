@@ -1,6 +1,7 @@
 import datetime as dt
 import argparse
 import yaml
+from rich import print
 from typing import TypedDict
 
 # Type hinting classes or aliases
@@ -280,6 +281,34 @@ class Calendar:
         print(r"\end{longtable}")
         print(r"\end{document}")
 
+    def generate_json(self) -> None:
+        class_weeks = []
+        week_count = 0
+        weeks = []
+        days = []
+        for day in self.days:
+            new_week = False
+            if day.weeknum not in class_weeks:
+                class_weeks.append(day.weeknum)
+                new_week = True
+                week_count += 1
+            if new_week:
+                if len(days) > 0:
+                    weeks.append(days)
+                days = []
+            topic = day.topic
+            if topic:
+                chapter = topic.chapter
+                description = topic.description
+                important = topic.is_important
+            else:
+                chapter = ""
+                description = day.description
+                important = False
+            js_day = {"date": str(day.date), "chapter": chapter, "description": description, "important": important, "events": day.events}
+            days.append(js_day)
+        print(weeks)
+
 
 class Day:
     """
@@ -398,6 +427,9 @@ if __name__ == "__main__":
     ap.add_argument(
         "--latex", action="store_true", help="Flag to specify latex output to stdout"
     )
+    ap.add_argument(
+        "--json", action="store_true", help="Flag to specify json output to stdout"
+    )
 
     ap.add_argument(
         "--html", action="store_true", help="Flag to specify latex output to stdout"
@@ -410,5 +442,7 @@ if __name__ == "__main__":
         calendar.generate_latex(config["outputs"]["latex"]["columns"])
     elif args.html:
         calendar.generate_html(config["outputs"]["html"]["columns"])
+    elif args.json:
+        calendar.generate_json()
     else:
         print(calendar)
