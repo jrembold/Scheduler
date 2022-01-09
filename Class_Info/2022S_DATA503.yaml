@@ -14,7 +14,7 @@ calendar_info:
   #extra_dates:
     #- !!timestamp 2022-05-06
 
-topics:
+DDIA:
   type: topics
   values:
     - {ch: , description: "Getting Started", duration: 1}
@@ -31,27 +31,28 @@ topics:
     - {ch: 11, description: "Stream Processing", duration: 1}
     #- {ch: 12, description: "The Future", duration: 1}
 
-alttopics:
+SQL:
   type: topics
   values:
-    #- {ch: 1, description: "First Database and Table", duration: 1}
-    #- {ch: 2, description: "Using SELECT", duration: 1}
-    #- {ch: 3, description: "Understanding Data Types", duration: 1}
+    - {ch: '1-2', description: "Tables and SELECT", duration: 1}
+    #- {ch: 2, description: "Using SELECT", duration: 0.5}
+    - {ch: '3-4', description: "Data Types and I/O", duration: 1}
     #- {ch: 4, description: "Importing and Exporting Data", duration: 1}
-    #- {ch: 5, description: "Math and Stats with SQL", duration: 3}
+    - {ch: 5, description: "Math and Stats with SQL", duration: 1}
     #- {ch: , description: "Adjustment Day", duration: 1}
-    #- {ch: 6, description: "Joining Tables", duration: 3}
-    #- {ch: 7, description: "Designing Tables", duration: 1}
+    - {ch: '5-6', description: "Math and Joining Tables", duration: 1}
+    - {ch: '6', description: "Joining Tables", duration: 1}
+    - {ch: '7-8', description: "Designing and Grouping", duration: 1}
     #- {ch: 8, description: "Grouping and Summarizing", duration: 1}
-    #- {ch: 9, description: "Inspecting and Modifying Data", duration: 2}
+    - {ch: 9, description: "Inspecting and Modifying Data", duration: 1}
     ##- {ch: 10, description: "Statistical Functions", duration: 1}
-    #- {ch: 11, description: "Dates and Times", duration: 1}
+    - {ch: '11-12', description: "Datetimes and Advanced Queries", duration: 1}
     #- {ch: , description: "Adjustment Day", duration: 1}
     #- {ch: 12, description: "Advanced Queries", duration: 2}
-    #- {ch: 13, description: "Mining Text", duration: 2}
-    #- {ch: 14, description: "Spatial Data with POSTGIS", duration: 3}
-    #- {ch: 15, description: "Views, Functions, and Triggers", duration: 1}
-    #- {ch: 17, description: "Database Maintenance", duration: 1}
+    - {ch: 13, description: "Mining Text", duration: 1}
+    - {ch: 14, description: "Spatial Data with POSTGIS", duration: 1}
+    - {ch: 15, description: "Views, Functions, and Triggers", duration: 1}
+    - {ch: 17, description: "Database Maintenance", duration: 1}
 
 
 tests:
@@ -60,6 +61,20 @@ tests:
   values:
     - {description: Midterm, date: !!timestamp 2022-02-16 }
     - {description: Final,  date: !!timestamp 2022-04-20 }
+
+homework:
+  type: event
+  values:
+    - {description: "HW 1", date: !!timestamp 2022-01-20 }
+    - {description: "HW 2", date: !!timestamp 2022-01-27 }
+    - {description: "HW 3", date: !!timestamp 2022-02-03 }
+    - {description: "HW 4", date: !!timestamp 2022-02-10 }
+    - {description: "HW 5", date: !!timestamp 2022-02-24 }
+    - {description: "HW 6", date: !!timestamp 2022-03-03 }
+    - {description: "HW 7", date: !!timestamp 2022-03-10 }
+    - {description: "HW 8", date: !!timestamp 2022-03-17 }
+    - {description: "HW 9", date: !!timestamp 2022-03-31 }
+    - {description: "HW 10", date: !!timestamp 2022-04-07 }
 
 
 
@@ -70,10 +85,12 @@ outputs:
       - Date
       - Chapter
       - Description
+      - Due
   latex:
     columns:
       - Week
       - Date
       - Chapter
       - Description
+      - Due
 

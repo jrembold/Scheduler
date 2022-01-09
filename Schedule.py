@@ -2,6 +2,7 @@ import datetime as dt
 import argparse
 import yaml
 from rich import print
+from rich.table import Table
 from typing import TypedDict
 
 # Type hinting classes or aliases
@@ -33,9 +34,13 @@ class Calendar:
         """
         date = start
         self.days = []  # type: list[Day]
+        self.classdays = classdays # for later reference
         while date <= end:
             if date.weekday() in classdays:
-                self.days.append(Day(date))
+                if date.weekday() == classdays[0]:
+                    self.days.append(Day(date, new_week=True))
+                else:
+                    self.days.append(Day(date))
             date += dt.timedelta(1)
 
     def __repr__(self) -> str:
@@ -53,12 +58,50 @@ class Calendar:
             output += str(day) + "\n"
         return output
 
+    def print_rich_table(self) -> None:
+        tab = Table(title="Schedule")
+        tab.add_column("Week", justify="center")
+        tab.add_column("Weekday")
+        tab.add_column("Date")
+        tab.add_column("Topics")
+        tab.add_column("Due")
+        self.days.sort(key=lambda day: day.date)
+        for day in self.days:
+            # Extract information from topic(s)
+            if len(day.topic):
+                if len(day.topic) > 1:
+                    desc = "\n".join([f"{top}: {day.topic[top].description}" for top in day.topic])
+                else:
+                    desc = "\n".join([f"{day.topic[top].description}" for top in day.topic])
+                is_important = any([day.topic[top].is_important for top in day.topic])
+            else:
+                desc = day.description
+                is_important = False
+            # Set coloring
+            color = "default"
+            if is_important:
+                color = "bold red"
+            elif day.weeknum % 2:
+                color = "green"
+            # Add the actual data to the row
+            tab.add_row(f"[{color}]{day.semester_week if day.new_week else ''}", f"[{color}]{day.weekday}", f"[{color}]{str(day.date)}", f"[{color}]{desc if desc else ''}", f"[{color}]{','.join([e for e in day.events])}")
+
+        print(tab)
+
     def add_extra_days(self, date_list: list[Date]) -> None:
         """
         Adds extra dates to the schedule. Frequently non-lecture
         days as they should have already been added initially.
         """
         self.days.extend([Day(d) for d in date_list])
+        self.mark_new_weeks()
+
+    def mark_new_weeks(self) -> None:
+        possible_weeks = set(day.weeknum for day in self.days)
+        for day in self.days:
+            if day.weeknum in possible_weeks:
+                day.new_week = True
+                possible_weeks.discard(day.weeknum)
 
     def assign_holidays(self, vacation_dict: dict[Date, str]) -> None:
         """
@@ -76,10 +119,11 @@ class Calendar:
         for activity in fixed_list:
             idx = [day.date for day in self.days].index(activity["date"])
             self.days[idx].assign_topic(
-                Topic(**activity, duration=1, important=is_important)
+                Topic(**activity, duration=1, important=is_important),
+                topic_name="fixed",
             )
 
-    def assign_topics(self, topic_list: list[TopicType]) -> None:
+    def assign_topics(self, topic_list: list[TopicType], topic_name: str) -> None:
         """
         Goes through the list of topics and assigns the correct number of
         available days to each topic in sequential order.
@@ -87,12 +131,19 @@ class Calendar:
         __days = self.days.copy()
         __topics = topic_list.copy()
         for t in __topics:
-            for _ in range(t["duration"]):
+            used = 0
+            while used < t["duration"]:
+                # for _ in range(t["duration"]):
                 thisday = __days.pop(0)
-                while not thisday.hasclass or thisday.topic is not None:
+                while (
+                    not thisday.hasclass
+                    or thisday.topic.get(topic_name) is not None
+                    or thisday.topic.get("fixed")
+                ):
                     thisday = __days.pop(0)
                 idx = self.days.index(thisday)
-                self.days[idx].assign_topic(Topic(**t))
+                self.days[idx].assign_topic(Topic(**t), topic_name)
+                used += 1
 
     def assign_events(self, event_list: list[Event]) -> None:
         """
@@ -202,41 +253,54 @@ class Calendar:
         print("</center>")
 
     def generate_latex(self, columns: list[str]) -> None:
-        def format_Week(day: Day) -> str:
-            if day.weekday == "Monday":
-                week_str = r"\multirow{{3}}{{*}}{{{}}}".format(week_count)
-            else:
-                week_str = ""
+        def format_Week(day: Day, topic_num: int = 0) -> str:
+            week_str = ""
+            if topic_num == 0:
+                if day.new_week:
+                    week_str = r"\multirow{{{}}}{{*}}{{{}}}".format(week_num_topics, day.semester_week)
             return week_str
 
-        def format_Date(day: Day) -> str:
-            return day.date.strftime("%a, %b %d")
+        def format_Date(day: Day, topic_num: int = 0) -> str:
+            output = ""
+            if topic_num == 0:
+                output = r"\multirow{{{}}}{{*}}{{{}}}".format(len(day.topic) if day.topic else 1, day.date.strftime("%a, %b %d"))
+                # output = day.date.strftime("%a, %b %d")
+            return output
 
-        def format_Chapter(day: Day) -> str:
-            if day.topic:
-                if day.topic.chapter:
-                    return r"Ch {}".format(day.topic.chapter)
-            return ""
+        def format_Chapter(day: Day, topic_num: int = 0) -> str:
+            output = ""
+            if len(day.topic) > 0:
+                topics = sorted([top for top in day.topic])
+                chap = day.topic[topics[topic_num]].chapter
+                if chap:
+                    output = r"{}: Ch {}".format(topics[topic_num], chap)
+            return output
 
-        def format_Description(day: Day) -> str:
+        def format_Description(day: Day, topic_num: int = 0) -> str:
+            if len(day.topic) > 0:
+                topics = sorted([top for top in day.topic])
+                topic = day.topic[topics[topic_num]]
+            else:
+                topic = None
             if not day.hasclass:
                 return r"\emph{{{}}}".format(
-                    day.topic.description if day.topic else day.description
+                    topic.description if topic else day.description
                 )
-            if day.topic and day.topic.is_important:
+            if topic and topic.is_important:
                 return r"\textbf{{{}}}".format(
-                    day.topic.description if day.topic else day.description
+                    topic.description if topic else day.description
                 )
-            if day.topic:
-                return day.topic.description
+            if topic:
+                return topic.description
             return ""
 
-        def format_Event(day: Day) -> str:
-            if len(day.events) > 0:
-                return ", ".join(day.events)
-            return ""
+        def format_Event(day: Day, topic_num: int = 0) -> str:
+            output = ""
+            if topic_num == 0:
+                    output = ", ".join(day.events)
+            return output
 
-        def format_row(day: Day) -> str:
+        def format_row(day: Day, topic_num: int = 0) -> str:
             func_lookup = {
                 "Week": format_Week,
                 "Date": format_Date,
@@ -247,7 +311,7 @@ class Calendar:
             }
             row = r""
             for column in columns:
-                row += func_lookup[column](day)
+                row += func_lookup[column](day, topic_num)
                 if column != columns[-1]:
                     row += r" & "
             row += r" \\"
@@ -262,6 +326,20 @@ class Calendar:
             row += r" \\"
             return row
 
+        def format_day(day: Day) -> str:
+            output = r""
+            if len(day.topic) > 0:
+                for i in range(len(day.topic)):
+                    row = format_row(day, topic_num = i)
+                    row += "\n"
+                    output += row
+            else:
+                row = format_row(day)
+                row += "\n"
+                output += row
+
+            return output.strip()
+
         self.days.sort(key=lambda day: day.date)
         print(r"\documentclass[varwidth]{standalone}")
         print(r"\usepackage{booktabs,multirow,longtable}")
@@ -271,17 +349,17 @@ class Calendar:
         print(make_header())
         print(r"\midrule")
         print(r"\endhead")
-        week_count = 1
-        for day in self.days:
-            print(format_row(day))
-            if day.weekday == "Friday":
-                week_count += 1
+        for i, day in enumerate(self.days):
+            curr_week = day.semester_week
+            week_num_topics = sum([len(day.topic) if day.topic else 1 for day in self.days if day.semester_week == curr_week])
+            if day.new_week and i != 0:
                 print(r"\midrule")
+            print(format_day(day))
         print(r"\bottomrule")
         print(r"\end{longtable}")
         print(r"\end{document}")
 
-    def generate_json(self) -> None:
+    def generate_json(self) -> list:
         class_weeks = []
         week_count = 0
         weeks = []
@@ -297,17 +375,35 @@ class Calendar:
                     weeks.append(days)
                 days = []
             topic = day.topic
-            if topic:
-                chapter = topic.chapter
-                description = topic.description
-                important = topic.is_important
-            else:
+            if len(topic) < 1:
                 chapter = ""
                 description = day.description
                 important = False
-            js_day = {"date": str(day.date), "chapter": chapter, "description": description, "important": important, "events": day.events}
-            days.append(js_day)
+                js_day = {
+                    "date": str(day.date),
+                    "topic": None,
+                    "chapter": chapter,
+                    "description": description,
+                    "important": important,
+                    "events": day.events,
+                }
+                days.append(js_day)
+            else:
+                for top in topic:
+                    chapter = topic[top].chapter
+                    description = topic[top].description
+                    important = topic[top].is_important
+                    js_day = {
+                        "date": str(day.date),
+                        "topic": top,
+                        "chapter": chapter,
+                        "description": description,
+                        "important": important,
+                        "events": day.events,
+                    }
+                    days.append(js_day)
         print(weeks)
+        return weeks
 
 
 class Day:
@@ -317,25 +413,28 @@ class Day:
 
     semester_start_week = 0
 
-    def __init__(self, date: Date):
+    def __init__(self, date: Date, new_week: bool = False):
         self.date = date
         self.hasclass = True
         self.holiday = False
         self.weekday = date.strftime("%A")
         self.weeknum = int(date.strftime("%U"))
-        if self.semester_start_week == 0:
+        if Day.semester_start_week == 0:
             Day.semester_start_week = self.weeknum
         self.semester_week = self.weeknum - self.semester_start_week + 1
-        self.topic = None
+        self.topic: dict[str, "Topic"] = {}
         self.description = None
         self.events = []  # type: list[str]
+        self.new_week = new_week
 
     def __repr__(self) -> str:
         """
         Returns a string summary of what occurs or is scheduled for that day.
         """
-        if self.topic:
-            msg = self.topic.description
+        if len(self.topic):
+            msg = "\n".join(
+                [self.topic[topic].description for topic in self.topic.keys()]
+            )
         elif self.description:
             msg = self.description
         else:
@@ -352,9 +451,9 @@ class Day:
         self.description = description
         self.holidary = True
 
-    def assign_topic(self, topic: "Topic"):
+    def assign_topic(self, topic: "Topic", topic_name: str):
         """Assigns a topic to a day and updates the topic"""
-        self.topic = topic
+        self.topic[topic_name] = topic
         topic.set_day(self.date)
 
     def assign_event(self, event_name: str):
@@ -414,7 +513,7 @@ def main(filename: str) -> tuple[Calendar, dict]:
             C.assign_fixed(config[key]["values"], config[key].get("important", False))
     for key in config:
         if config[key].get("type", None) == "topics":
-            C.assign_topics(config[key]["values"])
+            C.assign_topics(config[key]["values"], key)
     for key in config:
         if config[key].get("type", None) == "event":
             C.assign_events(config[key]["values"])
@@ -445,4 +544,5 @@ if __name__ == "__main__":
     elif args.json:
         calendar.generate_json()
     else:
-        print(calendar)
+        print()
+        calendar.print_rich_table()

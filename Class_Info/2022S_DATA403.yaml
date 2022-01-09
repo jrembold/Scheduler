@@ -38,16 +38,31 @@ topics:
     - {ch: 13, description: "Mining Text", duration: 2}
     - {ch: 14, description: "Spatial Data with POSTGIS", duration: 3}
     - {ch: 15, description: "Views, Functions, and Triggers", duration: 1}
-    - {ch: 17, description: "Database Maintenance", duration: 1}
+    - {ch: 17, description: "Database Maintenance and Project Presentations", duration: 1}
 
 
 tests:
   type: fixed date
   important: yes
   values:
-    - {description: Test 1 (Ch 1-5), date: !!timestamp 2022-02-10 }
-    - {description: Test 2 (Ch 6-11), date: !!timestamp 2022-03-17 }
-    - {description: Final,  date: !!timestamp 2022-05-06 }
+    - {description: "Test 1 (Ch 1-5)", date: !!timestamp 2022-02-10 }
+    - {description: "Test 2 (Ch 6-11)", date: !!timestamp 2022-03-17 }
+    - {description: "Final",  date: !!timestamp 2022-05-06 }
+
+homework:
+  type: event
+  values:
+    - {description: "HW 1 due", date: !!timestamp 2022-01-20 }
+    - {description: "HW 2 due", date: !!timestamp 2022-01-27 }
+    - {description: "HW 3 due", date: !!timestamp 2022-02-03 }
+    - {description: "HW 4 due", date: !!timestamp 2022-02-17 }
+    - {description: "HW 5 due", date: !!timestamp 2022-02-24 }
+    - {description: "HW 6 due", date: !!timestamp 2022-03-03 }
+    - {description: "HW 7 due", date: !!timestamp 2022-03-10 }
+    - {description: "HW 8 due", date: !!timestamp 2022-03-31 }
+    - {description: "HW 9 due", date: !!timestamp 2022-04-07 }
+    - {description: "HW 10 due", date: !!timestamp 2022-04-14 }
+    - {description: "HW 11 due", date: !!timestamp 2022-04-21 }
 
 
 
@@ -58,10 +73,12 @@ outputs:
       - Date
       - Chapter
       - Description
+      - Due
   latex:
     columns:
       - Week
       - Date
       - Chapter
       - Description
+      - Due
 
