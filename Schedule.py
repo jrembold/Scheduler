@@ -34,7 +34,7 @@ class Calendar:
         """
         date = start
         self.days = []  # type: list[Day]
-        self.classdays = classdays # for later reference
+        self.classdays = classdays  # for later reference
         while date <= end:
             if date.weekday() in classdays:
                 if date.weekday() == classdays[0]:
@@ -70,9 +70,13 @@ class Calendar:
             # Extract information from topic(s)
             if len(day.topic):
                 if len(day.topic) > 1:
-                    desc = "\n".join([f"{top}: {day.topic[top].description}" for top in day.topic])
+                    desc = "\n".join(
+                        [f"{top}: {day.topic[top].description}" for top in day.topic]
+                    )
                 else:
-                    desc = "\n".join([f"{day.topic[top].description}" for top in day.topic])
+                    desc = "\n".join(
+                        [f"{day.topic[top].description}" for top in day.topic]
+                    )
                 is_important = any([day.topic[top].is_important for top in day.topic])
             else:
                 desc = day.description
@@ -84,7 +88,13 @@ class Calendar:
             elif day.weeknum % 2:
                 color = "green"
             # Add the actual data to the row
-            tab.add_row(f"[{color}]{day.semester_week if day.new_week else ''}", f"[{color}]{day.weekday}", f"[{color}]{str(day.date)}", f"[{color}]{desc if desc else ''}", f"[{color}]{','.join([e for e in day.events])}")
+            tab.add_row(
+                f"[{color}]{day.semester_week if day.new_week else ''}",
+                f"[{color}]{day.weekday}",
+                f"[{color}]{str(day.date)}",
+                f"[{color}]{desc if desc else ''}",
+                f"[{color}]{','.join([e for e in day.events])}",
+            )
 
         print(tab)
 
@@ -166,41 +176,58 @@ class Calendar:
         This method feels cludgy and could almost certainly be greatly improved.
         """
 
-        def format_Week() -> str:
-            if new_week:
-                week_str = r"<td rowspan='4'>{}</td>".format(week_count)
-            else:
-                week_str = ""
-            return week_str
-
-        def format_Date(day: Day) -> str:
-            return r"<td>{}</td>".format(day.date.strftime("%b %d"))
-
-        def format_Chapter(day: Day) -> str:
-            if day.topic:
-                if day.topic.chapter:
-                    return r"<td>Ch {}</td>".format(day.topic.chapter)
-            return "<td></td>"
-
-        def format_Description(day: Day) -> str:
-            if not day.hasclass:
-                return r"<td bgcolor=#005146>{}</td>".format(
-                    day.topic.description if day.topic else day.description
+        def format_Week(day: Day, topic_num: int = 0) -> str:
+            if topic_num == 0 and day.new_week:
+                return r"<td rowspan='{}'>{}</td>".format(
+                    week_num_topics, day.semester_week
                 )
-            if day.topic and day.topic.is_important:
-                return r"<td bgcolor=#A20C00>{}</td>".format(
-                    day.topic.description if day.topic else day.description
+            return ""
+
+        def format_Date(day: Day, topic_num: int = 0) -> str:
+            if len(day.topic) <= 1:
+                return r"<td>{}</td>".format(day.date.strftime("%b %d"))
+            elif topic_num == 0:
+                return r"<td rowspan='{}'>{}</td>".format(
+                    len(day.topic) if day.topic else 1, day.date.strftime("%b %d")
                 )
-            if day.topic:
-                return r"<td>{}</td>".format(day.topic.description)
+            return ""
+
+        def format_Chapter(day: Day, topic_num: int = 0) -> str:
+            if len(day.topic) > 0:
+                topics = sorted([top for top in day.topic])
+                chap = day.topic[topics[topic_num]].chapter
+                if chap and len(day.topic) > 1:
+                    return r"<td>{}: Ch {}</td>".format(topics[topic_num], chap)
+                elif chap:
+                    return r"<td>Ch {}</td>".format(chap)
+
             return r"<td></td>"
 
-        def format_Event(day: Day) -> str:
-            if len(day.events) > 0:
+        def format_Description(day: Day, topic_num: int = 0) -> str:
+            if len(day.topic) > 0:
+                topics = sorted([top for top in day.topic])
+                topic = day.topic[topics[topic_num]]
+            else:
+                topic = None
+
+            if not day.hasclass:
+                return r"<td bgcolor=#005146>{}</td>".format(
+                    topic.description if topic else day.description
+                )
+            if topic and topic.is_important:
+                return r"<td bgcolor=#A20C00>{}</td>".format(
+                    topic.description if topic else day.description
+                )
+            if topic:
+                return r"<td>{}</td>".format(topic.description)
+            return r"<td></td>"
+
+        def format_Event(day: Day, topic_num: int = 0) -> str:
+            if topic_num == 0:
                 return r"<td>{}</td>".format(", ".join(day.events))
             return "<td></td>"
 
-        def print_day(day: Day) -> None:
+        def format_row(day: Day, topic_num: int = 0) -> str:
             func_lookup = {
                 "Week": format_Week,
                 "Date": format_Date,
@@ -209,20 +236,23 @@ class Calendar:
                 "Due": format_Event,
                 "Lab": format_Event,
             }
-            if new_week:
-                if week_count > 0:
-                    print("</tbody>")
-                print("<tbody>")
-            print("<tr>")
+            row = "<tr>"
             for column in columns:
-                # if func_lookup[column](day):
-                if column != "Week":
-                    print(func_lookup[column](day))
-                else:
-                    print(format_Week())
-            print("</tr>\n")
-            # if day.weekday == 'Friday':
-            # print("</tbody>\n")
+                row += "\n"
+                row += func_lookup[column](day, topic_num)
+            row += "\n</tr>\n"
+            return row
+
+        def print_day(day: Day) -> str:
+            output = ""
+            if len(day.topic) > 0:
+                for i in range(len(day.topic)):
+                    row = format_row(day, topic_num=i)
+                    output += row
+            else:
+                row = format_row(day)
+                output += row
+            return output
 
         def print_header() -> None:
             print("<tr>")
@@ -239,15 +269,20 @@ class Calendar:
         print("<center>")
         print("<table id='schedule'>")
         print_header()
-        class_weeks = []
-        week_count = 0
-        for day in self.days:
-            new_week = False
-            if day.weeknum not in class_weeks:
-                class_weeks.append(day.weeknum)
-                new_week = True
-                week_count += 1
-            print_day(day)
+        for i, day in enumerate(self.days):
+            curr_week = day.semester_week
+            week_num_topics = sum(
+                [
+                    len(day.topic) if day.topic else 1
+                    for day in self.days
+                    if day.semester_week == curr_week
+                ]
+            )
+            if day.new_week and i != 0:
+                print("</tbody>")
+            if day.new_week:
+                print("<tbody>")
+            print(print_day(day))
         print("</tbody>")
         print("</table>")
         print("</center>")
@@ -257,13 +292,17 @@ class Calendar:
             week_str = ""
             if topic_num == 0:
                 if day.new_week:
-                    week_str = r"\multirow{{{}}}{{*}}{{{}}}".format(week_num_topics, day.semester_week)
+                    week_str = r"\multirow{{{}}}{{*}}{{{}}}".format(
+                        week_num_topics, day.semester_week
+                    )
             return week_str
 
         def format_Date(day: Day, topic_num: int = 0) -> str:
             output = ""
             if topic_num == 0:
-                output = r"\multirow{{{}}}{{*}}{{{}}}".format(len(day.topic) if day.topic else 1, day.date.strftime("%a, %b %d"))
+                output = r"\multirow{{{}}}{{*}}{{{}}}".format(
+                    len(day.topic) if day.topic else 1, day.date.strftime("%a, %b %d")
+                )
                 # output = day.date.strftime("%a, %b %d")
             return output
 
@@ -272,8 +311,10 @@ class Calendar:
             if len(day.topic) > 0:
                 topics = sorted([top for top in day.topic])
                 chap = day.topic[topics[topic_num]].chapter
-                if chap:
+                if chap and len(day.topic) > 1:
                     output = r"{}: Ch {}".format(topics[topic_num], chap)
+                elif chap:
+                    output = r"Ch {}".format(chap)
             return output
 
         def format_Description(day: Day, topic_num: int = 0) -> str:
@@ -297,7 +338,7 @@ class Calendar:
         def format_Event(day: Day, topic_num: int = 0) -> str:
             output = ""
             if topic_num == 0:
-                    output = ", ".join(day.events)
+                output = ", ".join(day.events)
             return output
 
         def format_row(day: Day, topic_num: int = 0) -> str:
@@ -330,7 +371,7 @@ class Calendar:
             output = r""
             if len(day.topic) > 0:
                 for i in range(len(day.topic)):
-                    row = format_row(day, topic_num = i)
+                    row = format_row(day, topic_num=i)
                     row += "\n"
                     output += row
             else:
@@ -351,7 +392,13 @@ class Calendar:
         print(r"\endhead")
         for i, day in enumerate(self.days):
             curr_week = day.semester_week
-            week_num_topics = sum([len(day.topic) if day.topic else 1 for day in self.days if day.semester_week == curr_week])
+            week_num_topics = sum(
+                [
+                    len(day.topic) if day.topic else 1
+                    for day in self.days
+                    if day.semester_week == curr_week
+                ]
+            )
             if day.new_week and i != 0:
                 print(r"\midrule")
             print(format_day(day))
