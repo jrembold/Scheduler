@@ -1,0 +1,97 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2022-08-29'
+  end_date: !!timestamp '2022-12-09'
+  class_days: [2]
+  holiday_dates:
+    !!timestamp 2022-09-05: Labor Day
+    !!timestamp 2022-10-14: Mid-Semester Day
+    !!timestamp 2022-11-21: Fall Break
+    !!timestamp 2022-11-22: Fall Break
+    !!timestamp 2022-11-23: Fall Break
+    !!timestamp 2022-11-24: Fall Break
+    !!timestamp 2022-11-25: Fall Break
+  #extra_dates:
+    #- !!timestamp 2022-12-14
+
+FoDE:
+  type: topics
+  values:
+    - {ch: 1, description: "Data Engineering Described", duration: 1}
+    - {ch: 2, description: "The Data Engineering Lifecycle", duration: 1}
+    - {ch: 3, description: "Designing Good Data Architecture", duration: 1}
+    - {ch: 4, description: "Choosing Technologies", duration: 1}
+    - {ch: 5, description: "Data Generation", duration: 1}
+    - {ch: 6, description: "Data Storage", duration: 1}
+    - {ch: 7, description: "Data Ingestion", duration: 1}
+    - {ch: 8, description: "Modeling and Transforming", duration: 1}
+    - {ch: 9, description: "Serving Data", duration: 1}
+    - {ch: 10, description: "Security and Privacy", duration: 1}
+    - {ch: 11, description: "The Future", duration: 1}
+    #- {ch: 12, description: "The Future", duration: 1}
+
+SQL:
+  type: topics
+  values:
+    - {ch: '1-2', description: "Tables and SELECT", duration: 1}
+    #- {ch: 2, description: "Using SELECT", duration: 0.5}
+    - {ch: '3-4', description: "Data Types and I/O", duration: 1}
+    #- {ch: 4, description: "Importing and Exporting Data", duration: 1}
+    - {ch: 5, description: "Math and Stats with SQL", duration: 1}
+    #- {ch: , description: "Adjustment Day", duration: 1}
+    - {ch: '5-6', description: "Math and Joining Tables", duration: 1}
+    - {ch: '6', description: "Joining Tables", duration: 1}
+    - {ch: '7-8', description: "Designing and Grouping", duration: 1}
+    #- {ch: 8, description: "Grouping and Summarizing", duration: 1}
+    - {ch: 9, description: "Inspecting and Modifying Data", duration: 1}
+    ##- {ch: 10, description: "Statistical Functions", duration: 1}
+    - {ch: '11-12', description: "Datetimes and Advanced Queries", duration: 1}
+    #- {ch: , description: "Adjustment Day", duration: 1}
+    #- {ch: 12, description: "Advanced Queries", duration: 2}
+    - {ch: 13, description: "Mining Text", duration: 1}
+    - {ch: 14, description: "Spatial Data with POSTGIS", duration: 1}
+    - {ch: 15, description: "Views, Functions, and Triggers", duration: 1}
+    #- {ch: 17, description: "Database Maintenance", duration: 1}
+
+
+tests:
+  type: fixed date
+  important: yes
+  values:
+    - {description: Midterm, date: !!timestamp 2022-10-12 }
+    - {description: Project Presentations,  date: !!timestamp 2022-11-30 }
+    - {description: Final,  date: !!timestamp 2022-12-07 }
+
+homework:
+  type: event
+  values:
+    - {description: "HW 1", date: !!timestamp 2022-09-09 }
+    - {description: "HW 2", date: !!timestamp 2022-09-16 }
+    - {description: "HW 3", date: !!timestamp 2022-09-23 }
+    - {description: "HW 4", date: !!timestamp 2022-09-30 }
+    - {description: "HW 5", date: !!timestamp 2022-10-08 }
+    - {description: "HW 6", date: !!timestamp 2022-10-21 }
+    - {description: "HW 7", date: !!timestamp 2022-10-28 }
+    - {description: "HW 8", date: !!timestamp 2022-11-04 }
+    - {description: "HW 9", date: !!timestamp 2022-11-11 }
+    - {description: "HW 10", date: !!timestamp 2022-11-18 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+      - Due
+  latex:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+      - Due
+
