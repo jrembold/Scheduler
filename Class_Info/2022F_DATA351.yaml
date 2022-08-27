@@ -51,16 +51,16 @@ tests:
 homework:
   type: event
   values:
-    - {description: "HW 1 due", date: !!timestamp 2022-09-05 }
-    - {description: "HW 2 due", date: !!timestamp 2022-09-12 }
-    - {description: "HW 3 due", date: !!timestamp 2022-09-19 }
-    - {description: "HW 4 due", date: !!timestamp 2022-09-26 }
-    - {description: "HW 5 due", date: !!timestamp 2022-10-10 }
-    - {description: "HW 6 due", date: !!timestamp 2022-10-17 }
-    - {description: "HW 7 due", date: !!timestamp 2022-10-24 }
-    - {description: "HW 8 due", date: !!timestamp 2022-11-07 }
-    - {description: "HW 9 due", date: !!timestamp 2022-11-14 }
-    - {description: "HW 10 due", date: !!timestamp 2022-11-28 }
+    - {description: "HW 1 due", date: !!timestamp 2022-09-07 }
+    - {description: "HW 2 due", date: !!timestamp 2022-09-14 }
+    - {description: "HW 3 due", date: !!timestamp 2022-09-21 }
+    - {description: "HW 4 due", date: !!timestamp 2022-10-05 }
+    - {description: "HW 5 due", date: !!timestamp 2022-10-12 }
+    - {description: "HW 6 due", date: !!timestamp 2022-10-19 }
+    - {description: "HW 7 due", date: !!timestamp 2022-11-02 }
+    - {description: "HW 8 due", date: !!timestamp 2022-11-09 }
+    - {description: "HW 9 due", date: !!timestamp 2022-11-16 }
+    - {description: "HW 10 due", date: !!timestamp 2022-11-30 }
     #- {description: "HW 11 due", date: !!timestamp 2022-12-05 }
 
 

@@ -1,0 +1,88 @@
+---
+
+calendar_info:
+  start_date: !!timestamp 2022-8-29
+  end_date: !!timestamp 2022-12-09
+  class_days:
+      - 0
+      - 2
+      - 4
+  holiday_dates:
+      !!timestamp 2022-09-05: Labor Day
+      !!timestamp 2022-10-14: Mid-Semester Day
+      !!timestamp 2022-11-21: Fall Break
+      !!timestamp 2022-11-22: Fall Break
+      !!timestamp 2022-11-23: Fall Break
+      !!timestamp 2022-11-24: Fall Break
+      !!timestamp 2022-11-25: Fall Break
+  extra_dates:
+    - !!timestamp 2022-12-13
+
+topics:
+    type: topics
+    values:
+        - {ch:     , description: "Karel the Robot"           , duration: 3}
+        - {ch: 1    , description: "Introducing Python"           , duration: 3}
+        - {ch: 2    , description: "Control Statements"           , duration: 1}
+        - {ch: 3    , description: "Simple Graphics"              , duration: 1}
+        - {ch: 4    , description: "Functions"                    , duration: 2}
+        - {ch: 5    , description: "Writing Interactive Programs" , duration: 3}
+        - {ch: 6    , description: "Strings"                      , duration: 3}
+        - {ch: 7    , description: "Lists"                        , duration: 2}
+        - {ch: 9    , description: "The Programming Process"      , duration: 2}
+        - {ch: 10    , description: "Data Collections"            , duration: 3}
+        - {ch: '6.6&7.5'    , description: "Formatting and Data Files", duration: 1}
+        - {ch: 10, description: "Sets", duration: 1}
+        - {ch: 11, description: "Data Structures", duration: 3}
+        - {ch: 4.7, description: "Recursion", duration: 1}
+        - {ch: 8, description: "Algorithmic Analysis", duration: 2}
+        - {ch: 12, description: "Python Objects", duration: 2}
+        - {ch: , description: "Where from here?", duration: 1}
+
+overviews:
+    type: fixed date
+    important: no
+    values:
+        - {description: "Wordle Overview", date: !!timestamp 2022-09-16}
+        - {description: "Breakout Overview", date: !!timestamp 2022-10-07}
+        - {description: "Imageshop Overview", date: !!timestamp 2022-10-21}
+        - {description: "Enigma Overview", date: !!timestamp 2022-11-04}
+        - {description: "Adventure Overview", date: !!timestamp 2022-11-18}
+
+tests:
+    type: fixed date
+    important: yes
+    values:
+        - {description: "Midterm" , date: !!timestamp 2022-10-12}
+        - {description: "Final" , date: !!timestamp 2022-12-13}
+          
+homework:
+    type: event
+    values:
+        - {description: "Problem Set 1"        , date: !!timestamp 2022-9-9}
+        - {description: "Problem Set 2"        , date: !!timestamp 2022-9-16}
+        - {description: "Problem Set 3"        , date: !!timestamp 2022-9-23}
+        - {description: "Project 1"        , date: !!timestamp 2022-9-30}
+        - {description: "Problem Set 4"        , date: !!timestamp 2022-10-7}
+        - {description: "Project 2"        , date: !!timestamp 2022-10-21}
+        - {description: "Problem Set 5"        , date: !!timestamp 2022-10-28}
+        - {description: "Project 3"        , date: !!timestamp 2022-11-04}
+        - {description: "Problem Set 6"        , date: !!timestamp 2022-11-11}
+        - {description: "Project 4"        , date: !!timestamp 2022-11-18}
+        - {description: "Project 5"        , date: !!timestamp 2022-12-09}
+
+outputs:
+    html:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
+    latex:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
