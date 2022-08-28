@@ -31,7 +31,7 @@ topics:
         - {ch: 7    , description: "Lists"                        , duration: 2}
         - {ch: 9    , description: "The Programming Process"      , duration: 2}
         - {ch: 10    , description: "Data Collections"            , duration: 3}
-        - {ch: '6.6&7.5'    , description: "Formatting and Data Files", duration: 1}
+        - {ch: '6.6,7.5'    , description: "Formatting and Data Files", duration: 1}
         - {ch: 10, description: "Sets", duration: 1}
         - {ch: 11, description: "Data Structures", duration: 3}
         - {ch: 4.7, description: "Recursion", duration: 1}
@@ -70,6 +70,9 @@ homework:
         - {description: "Problem Set 6"        , date: !!timestamp 2022-11-11}
         - {description: "Project 4"        , date: !!timestamp 2022-11-18}
         - {description: "Project 5"        , date: !!timestamp 2022-12-09}
+        - {description: "Karel Contest", date: !!timestamp 2022-09-19}
+        - {description: "Graphics Contest", date: !!timestamp 2022-10-24}
+        - {description: "Adventure Contest", date: !!timestamp 2022-12-09}
 
 outputs:
     html:
