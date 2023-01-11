@@ -496,7 +496,7 @@ class Day:
         """Makes a day a holiday!"""
         self.hasclass = False
         self.description = description
-        self.holidary = True
+        self.holiday = True
 
     def assign_topic(self, topic: "Topic", topic_name: str):
         """Assigns a topic to a day and updates the topic"""
