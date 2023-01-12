@@ -169,6 +169,17 @@ class Calendar:
             idx = dates.index(event["date"])
             self.days[idx].assign_event(event["description"])
 
+    def reassign_new_weeks(self) -> None:
+        """ Goes back through dates and reassigns new week tags as necessary. """
+        encountered_weeks = []
+        self.days.sort(key=lambda day: day.date) # get dates in chrono order
+        for day in self.days:
+            if day.semester_week not in encountered_weeks:
+                day.new_week = True
+                encountered_weeks.append(day.semester_week)
+            else:
+                day.new_week = False
+
     def generate_html(self, columns: list[str]) -> None:
         """Outputs an html table to the screen. This can then be piped to saved
         however one might desire.
@@ -411,6 +422,7 @@ class Calendar:
         week_count = 0
         weeks = []
         days = []
+        self.days.sort(key=lambda day: day.date)
         for day in self.days:
             new_week = False
             if day.weeknum not in class_weeks:
@@ -449,6 +461,8 @@ class Calendar:
                         "events": day.events,
                     }
                     days.append(js_day)
+        # Add last remaining week
+        weeks.append(days)
         print(weeks)
         return weeks
 
@@ -564,6 +578,9 @@ def main(filename: str) -> tuple[Calendar, dict]:
     for key in config:
         if config[key].get("type", None) == "event":
             C.assign_events(config[key]["values"])
+
+    C.reassign_new_weeks()
+
     return C, config
 
 
