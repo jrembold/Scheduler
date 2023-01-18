@@ -21,74 +21,44 @@ calendar_info:
 topics:
     type: topics
     values:
-        - {ch:     , description: "Karel the Robot"           , duration: 4}
-        - {ch: 1    , description: "Introducing Python"           , duration: 3}
-        - {ch: 2    , description: "Control Statements"           , duration: 1}
-        - {ch: 3    , description: "Simple Graphics"              , duration: 1}
-        - {ch: 4    , description: "Functions"                    , duration: 2}
-        - {ch: 5    , description: "Writing Interactive Programs" , duration: 4}
-        - {ch: 6    , description: "Strings"                      , duration: 2}
-        - {ch: 7    , description: "Lists"                        , duration: 3}
-        - {ch:     , description: "Debugging"      , duration: 1}
-        - {ch: 9    , description: "Classes and Objects"            , duration: 4}
-        - {ch: '6.6,7.5'    , description: "Formatting and Data Files", duration: 1}
-        - {ch: 10, description: "Dictionaries and Sets", duration: 2}
-        - {ch: 11, description: "Data Structures", duration: 3}
-        #- {ch: 4.7, description: "Recursion", duration: 1}
-        - {ch: 8, description: "Algorithmic Analysis", duration: 2}
-        - {ch: , description: "Fun Libraries", duration: 1}
-        - {ch: , description: "Fun Algorithms", duration: 1}
+        - {ch:     , description: "Solar System"           , duration: 4}
+        - {ch:     , description: "Stars"           , duration: 4}
+        - {ch:     , description: "Exoplanets"           , duration: 4}
+        #- {ch:     , description: "Milky Way?"           , duration: 4}
+        - {ch:     , description: "Galaxies"           , duration: 4}
+        - {ch:     , description: "Dark Matter"           , duration: 4}
+        - {ch:     , description: "Cosmology"           , duration: 4}
 
-overviews:
+workdays:
     type: fixed date
     important: no
     values:
-        - {description: "Wordle Overview", date: !!timestamp 2023-02-03}
-        - {description: "Breakout Overview", date: !!timestamp 2023-03-06}
-        - {description: "Imageshop Overview", date: !!timestamp 2023-03-17}
-        - {description: "Enigma Overview", date: !!timestamp 2023-04-10}
-        - {description: "Adventure Overview", date: !!timestamp 2023-04-21}
+        - {description: "Project 1 Workday", date: !!timestamp 2023-03-06}
+        - {description: "Project 2 Workday", date: !!timestamp 2023-05-03}
 
 tests:
     type: fixed date
     important: yes
     values:
-        - {description: "Midterm" , date: !!timestamp 2023-03-03}
-        - {description: "Final" , date: !!timestamp 2023-05-12}
+        - {description: "Project 1 Presentations" , date: !!timestamp 2023-03-08}
+        - {description: "Project 2 Presentations" , date: !!timestamp 2023-05-12}
           
 homework:
     type: event
     values:
-        - {description: "Problem Set 1"        , date: !!timestamp 2023-1-27}
-        - {description: "Problem Set 2"        , date: !!timestamp 2023-2-03}
-        - {description: "Problem Set 3"        , date: !!timestamp 2023-2-10}
-        - {description: "Project 1"        , date: !!timestamp 2023-2-17}
-        - {description: "Problem Set 4"        , date: !!timestamp 2023-2-24}
-        - {description: "Project 2"        , date: !!timestamp 2023-3-10}
-        - {description: "Problem Set 5"        , date: !!timestamp 2023-3-17}
-        - {description: "Project 3"        , date: !!timestamp 2023-03-24}
-        - {description: "Problem Set 6"        , date: !!timestamp 2023-04-07}
-        - {description: "Project 4"        , date: !!timestamp 2023-04-21}
-        - {description: "Project 5"        , date: !!timestamp 2023-05-03}
-        #- {description: "Karel Contest", date: !!timestamp 2023-09-19}
-        - {description: "Graphics Contest", date: !!timestamp 2023-03-13}
-        - {description: "Adventure Contest", date: !!timestamp 2023-05-03}
+      - {description: "HW1: SS"        , date: !!timestamp 2023-2-03}
+      - {description: "HW2: Stars"        , date: !!timestamp 2023-2-17}
+      - {description: "HW3: Exoplanets"        , date: !!timestamp 2023-3-03}
+      - {description: "HW4: Galaxies"        , date: !!timestamp 2023-3-24}
+      - {description: "HW5: Dark Matter"        , date: !!timestamp 2023-4-14}
+      - {description: "HW6: Cosmology"        , date: !!timestamp 2023-5-01}
 
-sections:
+quizzes:
   type: event
   values:
-    - {description: "S1: Karel the Robot", date: !!timestamp 2023-01-23}
-    - {description: "S2: Simple Python", date: !!timestamp 2023-01-30}
-    - {description: "S3: Control Statements", date: !!timestamp 2023-02-06}
-    - {description: "S4: Graphics", date: !!timestamp 2023-02-13}
-    - {description: "S5: Interactive Graphics", date: !!timestamp 2023-02-27}
-    - {description: "S6: Strings", date: !!timestamp 2023-03-06}
-    - {description: "S7: Lists", date: !!timestamp 2023-03-13}
-    #- {description: "S8: Images", date: !!timestamp 2023-03-13}
-    - {description: "S9: ImageShop", date: !!timestamp 2023-03-20}
-    - {description: "S10: Classes and Objects", date: !!timestamp 2023-04-03}
-    - {description: "S11: Enigma", date: !!timestamp 2023-04-10}
-    - {description: "S12: Adventure", date: !!timestamp 2023-04-24}
+    - {description: "Quiz 1", date: !!timestamp 2023-02-22}
+    - {description: "Quiz 2", date: !!timestamp 2023-04-05}
+    - {description: "Quiz 3", date: !!timestamp 2023-05-03}
 
 outputs:
     html:
