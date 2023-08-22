@@ -393,7 +393,7 @@ class Calendar:
             return output.strip()
 
         self.days.sort(key=lambda day: day.date)
-        print(r"\documentclass[varwidth]{standalone}")
+        print(r"\documentclass\[varwidth]{standalone}")
         print(r"\usepackage{booktabs,multirow,longtable}")
         print(r"\begin{document}")
         print(r"\begin{longtable}{ccccc}")
