@@ -1,0 +1,96 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2024-01-16'
+  end_date: !!timestamp '2024-04-29'
+  class_days: [1]
+  holiday_dates:
+    !!timestamp 2024-03-25: Spring Break
+    !!timestamp 2024-03-26: Spring Break
+    !!timestamp 2024-03-27: Spring Break
+    !!timestamp 2024-03-28: Spring Break
+    !!timestamp 2024-03-29: Spring Break
+  #extra_dates:
+    #- !!timestamp 2022-12-14
+
+Pipelines:
+  type: topics
+  values:
+    - {ch: , description: "Data Engineering Described", duration: 1}
+    - {ch: , description: "Data Sources", duration: 1}
+    - {ch: , description: "The Shell", duration: 1}
+    - {ch: , description: "Remote Connections", duration: 1}
+    - {ch: , description: "Docker Containers", duration: 1}
+    - {ch: , description: "Scraping", duration: 1}
+    - {ch: , description: "Modeling and Normalization", duration: 1}
+    - {ch: , description: "Automating Transforms", duration: 1}
+    - {ch: , description: "", duration: 1}
+    - {ch: , description: "Regular Expressions", duration: 1}
+    - {ch: , description: "Serving Data", duration: 1}
+    #- {ch: 12, description: "The Future", duration: 1}
+
+SQL:
+  type: topics
+  values:
+    - {ch: '2-3', description: "Tables and SELECT", duration: 1}
+    #- {ch: 2, description: "Using SELECT", duration: 0.5}
+    - {ch: '4-5', description: "Data Types and I/O", duration: 1}
+    #- {ch: 4, description: "Importing and Exporting Data", duration: 1}
+    - {ch: 6, description: "Calculations with SQL", duration: 1}
+    #- {ch: , description: "Adjustment Day", duration: 1}
+    - {ch: '6-7', description: "Joining Tables", duration: 1}
+    - {ch: '7', description: "Constraining Tables", duration: 1}
+    - {ch: '8-9', description: "Grouping Showdown", duration: 1}
+    #- {ch: 8, description: "Grouping and Summarizing", duration: 1}
+    - {ch: '12-13', description: "JSON and Date-Time", duration: 1}
+    - {ch: 10, description: "Inspecting and Modifying Data", duration: 1}
+    ##- {ch: 10, description: "Statistical Functions", duration: 1}
+    - {ch: , description: "Subqueries, Crosstabs, and Window Functions", duration: 1}
+    #- {ch: 12, description: "Advanced Queries", duration: 2}
+    - {ch: 14, description: "Mining Text", duration: 1}
+    - {ch: 15, description: "Spatial Data with POSTGIS", duration: 1}
+    - {ch: 16, description: "Views, Functions, and Triggers", duration: 1}
+    #- {ch: 17, description: "Database Maintenance", duration: 1}
+
+
+tests:
+  type: fixed date
+  important: yes
+  values:
+    - {description: Jed in Mexico for Eclipse, date: !!timestamp 2024-04-02 }
+    - {description: Project Presentations,  date: !!timestamp 2024-04-23 }
+    #- {description: Final,  date: !!timestamp 2023-04-19 }
+
+deadlines:
+  type: event
+  values:
+    - {description: "Midterm Recording",  date: !!timestamp 2024-02-26 }
+    - {description: "HW 1",  date: !!timestamp 2024-01-22 }
+    - {description: "HW 2",  date: !!timestamp 2024-01-29 }
+    - {description: "HW 3",  date: !!timestamp 2024-02-05 }
+    - {description: "HW 4",  date: !!timestamp 2024-02-12 }
+    - {description: "HW 5",  date: !!timestamp 2024-02-19 }
+    - {description: "HW 6",  date: !!timestamp 2024-03-04 }
+    - {description: "HW 7",  date: !!timestamp 2024-03-11 }
+    - {description: "HW 8",  date: !!timestamp 2024-03-18 }
+    - {description: "HW 9",  date: !!timestamp 2024-04-08 }
+    - {description: "HW 10", date: !!timestamp 2024-04-15 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+      - Due
+  latex:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+      - Due
+
