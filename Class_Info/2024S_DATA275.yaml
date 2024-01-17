@@ -1,7 +1,7 @@
 ---
 
 calendar_info:
-  start_date: !!timestamp 2024-1-16
+  start_date: !!timestamp 2024-1-18
   end_date: !!timestamp 2024-04-30
   class_days:
       - 1
@@ -26,7 +26,7 @@ topics:
         - {ch:     , description: "Galaxies"           , duration: 5}
         - {ch:     , description: "Dark Matter"           , duration: 4}
         - {ch:     , description: "Cosmology"           , duration: 2}
-        - {ch:     , description: "Working with FITS"           , duration: 1}
+        #- {ch:     , description: "Working with FITS"           , duration: 1}
 
 workdays:
     type: fixed date

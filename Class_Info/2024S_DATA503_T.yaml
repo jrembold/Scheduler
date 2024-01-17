@@ -1,8 +1,8 @@
 ---
 
 calendar_info:
-  start_date: !!timestamp '2024-01-16'
-  end_date: !!timestamp '2024-04-29'
+  start_date: !!timestamp '2024-01-23'
+  end_date: !!timestamp '2024-04-30'
   class_days: [1]
   holiday_dates:
     !!timestamp 2024-03-25: Spring Break
@@ -58,23 +58,23 @@ tests:
   important: yes
   values:
     - {description: Jed in Mexico for Eclipse, date: !!timestamp 2024-04-02 }
-    - {description: Project Presentations,  date: !!timestamp 2024-04-23 }
+    - {description: Project Presentations,  date: !!timestamp 2024-04-30 }
     #- {description: Final,  date: !!timestamp 2023-04-19 }
 
 deadlines:
   type: event
   values:
     - {description: "Midterm Recording",  date: !!timestamp 2024-02-26 }
-    - {description: "HW 1",  date: !!timestamp 2024-01-22 }
-    - {description: "HW 2",  date: !!timestamp 2024-01-29 }
-    - {description: "HW 3",  date: !!timestamp 2024-02-05 }
-    - {description: "HW 4",  date: !!timestamp 2024-02-12 }
-    - {description: "HW 5",  date: !!timestamp 2024-02-19 }
-    - {description: "HW 6",  date: !!timestamp 2024-03-04 }
-    - {description: "HW 7",  date: !!timestamp 2024-03-11 }
-    - {description: "HW 8",  date: !!timestamp 2024-03-18 }
-    - {description: "HW 9",  date: !!timestamp 2024-04-08 }
-    - {description: "HW 10", date: !!timestamp 2024-04-15 }
+    - {description: "HW 1",  date: !!timestamp 2024-01-29 }
+    - {description: "HW 2",  date: !!timestamp 2024-02-05 }
+    - {description: "HW 3",  date: !!timestamp 2024-02-12 }
+    - {description: "HW 4",  date: !!timestamp 2024-02-19 }
+    - {description: "HW 5",  date: !!timestamp 2024-03-04 }
+    - {description: "HW 6",  date: !!timestamp 2024-03-11 }
+    - {description: "HW 7",  date: !!timestamp 2024-03-18 }
+    - {description: "HW 8",  date: !!timestamp 2024-04-08 }
+    - {description: "HW 9", date: !!timestamp 2024-04-15 }
+    - {description: "HW 10",  date: !!timestamp 2024-04-22 }
 
 
 
