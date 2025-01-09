@@ -1,0 +1,83 @@
+---
+
+calendar_info:
+  start_date: !!timestamp 2024-8-26
+  end_date: !!timestamp 2024-12-04
+  class_days:
+      - 0
+      - 2
+  holiday_dates:
+      !!timestamp 2024-09-02: Labor Day
+      !!timestamp 2024-10-11: Mid-Semester Day
+      !!timestamp 2024-11-27: Thanksgiving Break
+      !!timestamp 2024-11-28: Thanksgiving Break
+      !!timestamp 2024-11-29: Thanksgiving Break
+  extra_dates:
+    - !!timestamp 2024-12-12
+
+topics:
+  type: topics
+  values:
+    - {ch: 1, description: "First Database and Table", duration: 1}
+    - {ch: 2, description: "Using SELECT", duration: 1}
+    - {ch: 3, description: "Understanding Data Types", duration: 1}
+    - {ch: 4, description: "Importing and Exporting Data", duration: 1}
+    - {ch: 5, description: "Math and Stats with SQL", duration: 2}
+    #- {ch: , description: "Adjustment Day", duration: 0}
+    - {ch: 6, description: "Joining Tables", duration: 2}
+    - {ch: 7, description: "Designing Tables", duration: 2}
+    - {ch: 8, description: "Grouping and Summarizing", duration: 1}
+    - {ch: 9, description: "Inspecting and Modifying Data", duration: 2}
+    #- {ch: 10, description: "Statistical Functions", duration: 1}
+    - {ch: 11, description: "Dates and Times", duration: 1}
+    - {ch: , description: "Window Functions", duration: 1}
+    - {ch: 12, description: "Advanced Queries", duration: 2}
+    - {ch: 13, description: "Mining Text", duration: 2}
+    - {ch: 14, description: "Spatial Data with POSTGIS", duration: 2}
+    - {ch: , description: "Webscraping", duration: 1}
+    - {ch: 15, description: "Views, Functions, and Triggers", duration: 2}
+    #- {ch: , description: "Project Workday", duration: 1}
+    - {ch: 17, description: "Project Presentations", duration: 2}
+
+
+tests:
+  type: fixed date
+  important: yes
+  values:
+    - {description: "Test 1 (Ch 1-5)", date: !!timestamp 2024-09-25 }
+    - {description: "Test 2 (Ch 6-9)", date: !!timestamp 2024-10-30 }
+    - {description: "Final",  date: !!timestamp 2024-12-12 }
+
+homework:
+  type: event
+  values:
+    - {description: "HW 1 due", date: !!timestamp 2024-09-04 }
+    - {description: "HW 2 due", date: !!timestamp 2024-09-11 }
+    - {description: "HW 3 due", date: !!timestamp 2024-09-18 }
+    - {description: "HW 4 due", date: !!timestamp 2024-10-02 }
+    - {description: "HW 5 due", date: !!timestamp 2024-10-09 }
+    - {description: "HW 6 due", date: !!timestamp 2024-10-16 }
+    - {description: "HW 7 due", date: !!timestamp 2024-10-23 }
+    - {description: "HW 8 due", date: !!timestamp 2024-11-06 }
+    - {description: "HW 9 due", date: !!timestamp 2024-11-13 }
+    - {description: "HW 10 due", date: !!timestamp 2024-11-20 }
+    #- {description: "HW 11 due", date: !!timestamp 2022-12-05 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+      - Due
+  latex:
+    columns:
+      - Week
+      - Date
+      - Chapter
+      - Description
+      - Due
+

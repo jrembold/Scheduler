@@ -1,0 +1,79 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2024-05-13'
+  end_date: !!timestamp '2024-08-16'
+  class_days: [1]
+  #holiday_dates:
+  #extra_dates:
+    #- !!timestamp 2022-12-14
+
+Part 1:
+  type: topics
+  values:
+    - {ch: , description: "Syllabus and Research vs EDA", duration: 1}
+    - {ch: , description: "Prof Dev: Targeting and Networking", duration: 1}
+    - {ch: , description: "TBD", duration: 1}
+    - {ch: , description: "Prof Dev: Behavioral Interviews", duration: 1}
+    - {ch: , description: "Prof Dev: Internal Mock Interviews", duration: 1}
+    - {ch: , description: "Publishing a homepage/portfolio with GH Pages", duration: 1}
+    - {ch: , description: "Prof Dev: Prepping for technical interviews", duration: 1}
+    - {ch: , description: "Technical writing with Quarto", duration: 1}
+    - {ch: , description: "TBD", duration: 1}
+    - {ch: , description: "Prof Dev: Alumni Panel", duration: 1}
+    #- {ch: , description: "Prof Dev: External Mock Interviews", duration: 1}
+    - {ch: , description: "Prof Dev Drop-ins / TBD", duration: 1}
+    - {ch: , description: "Prof Dev Drop-ins / TBD", duration: 1}
+
+
+
+Part 2:
+  type: topics
+  values:
+    - {ch: , description: "Project Brainstorming", duration: 1}
+    - {ch: , description: "Partner/Group Meet-ups and Brainstorming", duration: 1}
+    - {ch: , description: "Work on Proposals", duration: 1}
+    - {ch: , description: "Guest Faculty - Data Acquisition work", duration: 1}
+    - {ch: , description: "Scraping and modeling refresher", duration: 1}
+    - {ch: , description: "TBD", duration: 1}
+    - {ch: , description: "Data Summary work", duration: 1}
+    - {ch: , description: "Statistics Consultations", duration: 1}
+    - {ch: , description: "Machine Learning Consultations", duration: 1}
+    - {ch: , description: "Alumni Consultations", duration: 1}
+    #- {ch: , description: "Prof Dev: External Mock Interviews", duration: 1}
+    - {ch: , description: "Data Visualization Consulting", duration: 1}
+    - {ch: , description: "Peer Presentation Practice", duration: 1}
+
+
+tests:
+  type: fixed date
+  important: yes
+  values:
+    - {description: "External Mock Interviews", date: !!timestamp 2024-07-16 }
+    - {description: "Project Presentations",  date: !!timestamp 2024-08-13 }
+
+deadlines:
+  type: event
+  values:
+    - {description: "Project Proposal",  date: !!timestamp 2024-06-03 }
+    - {description: "Data Summary",  date: !!timestamp 2024-07-01 }
+    - {description: "Personal Portfolio",  date: !!timestamp 2024-07-15 }
+    - {description: "Rough Draft Write-up",  date: !!timestamp 2024-07-29 }
+    - {description: "Final Draft Write-up",  date: !!timestamp 2024-08-15 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+  latex:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+

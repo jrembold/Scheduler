@@ -1,0 +1,112 @@
+---
+
+calendar_info:
+  start_date: !!timestamp 2024-8-26
+  end_date: !!timestamp 2024-12-04
+  class_days:
+      - 0
+      - 2
+      - 4
+  holiday_dates:
+      !!timestamp 2024-09-02: Labor Day
+      !!timestamp 2024-10-11: Mid-Semester Day
+      !!timestamp 2024-11-27: Thanksgiving Break
+      !!timestamp 2024-11-28: Thanksgiving Break
+      !!timestamp 2024-11-29: Thanksgiving Break
+  extra_dates:
+    - !!timestamp 2024-12-07
+
+topics:
+    type: topics
+    values:
+        - {ch:     , description: "Karel the Robot"           , duration: 4}
+        - {ch: 1    , description: "Introducing Python"           , duration: 2}
+        - {ch: 2    , description: "Control Statements"           , duration: 1}
+        - {ch: 3    , description: "Algorithms/Debugging"           , duration: 1}
+        - {ch: 7    , description: "Strings"                      , duration: 4}
+        - {ch: 4    , description: "Simple Graphics"              , duration: 2}
+        - {ch: 5    , description: "Functions"                    , duration: 2}
+        - {ch: 6    , description: "Writing Interactive Programs" , duration: 3}
+        - {ch: 8    , description: "Lists"                        , duration: 4}
+        #- {ch:     , description: "Debugging"      , duration: 1}
+        - {ch: 10    , description: "Classes and Objects"            , duration: 3}
+        #- {ch: '6.6,7.5'    , description: "Formatting and Data Files", duration: 1}
+        - {ch: 11, description: "Dictionaries and Sets", duration: 2}
+        - {ch: 12, description: "Data Structures", duration: 2}
+        #- {ch: 4.7, description: "Recursion", duration: 1}
+        - {ch: 9, description: "Algorithmic Analysis", duration: 3}
+        - {ch: , description: "Fun Libraries", duration: 1}
+        - {ch: , description: "Fun Algorithms", duration: 1}
+
+overviews:
+    type: fixed date
+    important: no
+    values:
+        #- {description: "Wordle Overview", date: !!timestamp 2023-02-03}
+        #- {description: "Breakout Overview", date: !!timestamp 2023-03-06}
+        - {description: "Imageshop Overview", date: !!timestamp 2024-10-25}
+        - {description: "Enigma Overview", date: !!timestamp 2024-11-11}
+        - {description: "Adventure Overview", date: !!timestamp 2024-11-18}
+
+tests:
+    type: fixed date
+    important: yes
+    values:
+        - {description: "Midterm 1 (Ch 1 - 3, 7)" , date: !!timestamp 2024-10-04}
+        - {description: "Midterm 2 (Ch 4-6, 8)" , date: !!timestamp 2024-11-08}
+        - {description: "Final" , date: !!timestamp 2024-12-07}
+          
+homework:
+    type: event
+    values:
+        - {description: "Problem Set 0: Setup"        , date: !!timestamp 2024-9-02}
+        - {description: "Problem Set 1: Karel"        , date: !!timestamp 2024-9-09}
+        - {description: "Problem Set 2: Algorithms"        , date: !!timestamp 2024-9-16}
+        - {description: "Problem Set 3: Strings"        , date: !!timestamp 2024-9-23}
+        - {description: "Project 1: Wordle"        , date: !!timestamp 2024-09-30}
+        - {description: "Problem Set 4: Graphics"        , date: !!timestamp 2024-10-14}
+        - {description: "Project 2: Breakout"        , date: !!timestamp 2024-10-21}
+        - {description: "Problem Set 5: Arrays"        , date: !!timestamp 2024-10-28}
+        - {description: "Project 3: ImageShop"        , date: !!timestamp 2024-11-04}
+        #- {description: "Problem Set 6"        , date: !!timestamp 2024-11-10}
+        - {description: "Project 4: Enigma"        , date: !!timestamp 2024-11-18}
+        - {description: "Project 5: Adventure"        , date: !!timestamp 2024-12-04}
+        #- {description: "Karel Contest", date: !!timestamp 2024-09-19}
+        - {description: "Optional Graphics Contest", date: !!timestamp 2024-11-11}
+        - {description: "Optional Game Contest", date: !!timestamp 2024-12-07}
+
+sections:
+  type: weekly_event
+  values:
+    - {description: "S1: Karel the Robot", date: !!timestamp 2024-09-04}
+    - {description: "S2: Simple Python and Control Statements", date: !!timestamp 2024-09-11}
+    #- {description: "S3: Control Statements", date: !!timestamp 2024-09-20}
+    - {description: "S3: Strings", date: !!timestamp 2024-09-18}
+    - {description: "S4: Wordle", date: !!timestamp 2024-09-25}
+    - {description: "S6: Graphics", date: !!timestamp 2024-10-09}
+    - {description: "S7: Breaking out Pacman", date: !!timestamp 2024-10-16}
+    - {description: "S8: Lists", date: !!timestamp 2024-10-23}
+    #- {description: "S8: Images", date: !!timestamp 2024-03-13}
+    - {description: "S9: Image Manipulation", date: !!timestamp 2024-10-30}
+    #- {description: "S9: Classes and Objects", date: !!timestamp 2024-10-30}
+    - {description: "S11: Enigma", date: !!timestamp 2024-11-13}
+    - {description: "S12: Adventure", date: !!timestamp 2024-11-20}
+    - {description: "S5: Midterm 1 Prep", date: !!timestamp 2024-10-02}
+    - {description: "S10: Midterm 2 Prep", date: !!timestamp 2024-11-06}
+    - {description: "S13: Final Prep", date: !!timestamp 2024-12-04}
+
+outputs:
+    html:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
+    latex:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due

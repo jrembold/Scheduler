@@ -1,0 +1,54 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2024-07-10'
+  end_date: !!timestamp '2024-08-16'
+  class_days: [2]
+  #holiday_dates:
+  #extra_dates:
+    #- !!timestamp 2022-12-14
+
+Part 1:
+  type: topics
+  values:
+    - {ch: , description: "Syllabus, Types and Operations", duration: 1}
+    - {ch: , description: "Functions and Graphics", duration: 1}
+    - {ch: , description: "Interactive Graphics", duration: 1}
+    - {ch: , description: "Mutable Types", duration: 1}
+    - {ch: , description: "Classes", duration: 1}
+    - {ch: , description: "Data Structures and Complexity", duration: 1}
+
+
+#tests:
+  #type: fixed date
+  #important: yes
+  #values:
+    #- {description: "External Mock Interviews", date: !!timestamp 2024-07-16 }
+    #- {description: "Project Presentations",  date: !!timestamp 2024-08-13 }
+
+deadlines:
+  type: event
+  values:
+    - {description: "Roman Numeral Calculator",  date: !!timestamp 2024-07-18 }
+    - {description: "Optical Illusions ",  date: !!timestamp 2024-07-25 }
+    - {description: "Breakout",  date: !!timestamp 2024-08-01 }
+    - {description: "Fingerprint Validation",  date: !!timestamp 2024-08-08 }
+    - {description: "The Enigma Machine",  date: !!timestamp 2024-08-15 }
+    - {description: "Linked Labyrinths",  date: !!timestamp 2024-08-20 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+  latex:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+

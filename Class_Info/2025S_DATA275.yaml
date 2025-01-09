@@ -1,0 +1,85 @@
+---
+
+calendar_info:
+  start_date: !!timestamp 2025-1-13
+  end_date: !!timestamp 2025-04-29
+  class_days:
+      - 1
+      - 3
+  holiday_dates:
+      !!timestamp 2025-01-20: MLK Day
+      !!timestamp 2025-03-24: Spring Break
+      !!timestamp 2025-03-25: Spring Break
+      !!timestamp 2025-03-26: Spring Break
+      !!timestamp 2025-03-27: Spring Break
+      !!timestamp 2025-03-28: Spring Break
+      !!timestamp 2025-04-16: SSRD
+  extra_dates:
+    - !!timestamp 2025-05-05
+
+topics:
+    type: topics
+    values:
+        - {ch:     , description: "Solar System"           , duration: 4}
+        - {ch:     , description: "Stars"           , duration: 4}
+        - {ch:     , description: "Exoplanets"           , duration: 5}
+        #- {ch:     , description: "Milky Way?"           , duration: 4}
+        - {ch:     , description: "Galaxies"           , duration: 5}
+        - {ch:     , description: "Cosmology"           , duration: 6}
+        #- {ch:     , description: "Dark Cosmology"           , duration: 3}
+        #- {ch:     , description: "Working with FITS"           , duration: 1}
+
+workdays:
+    type: fixed date
+    important: no
+    values:
+        - {description: "Effective Teamwork", date: !!timestamp 2025-01-16}
+        - {description: "Computational Essays", date: !!timestamp 2025-01-23}
+        - {description: "Project Workday", date: !!timestamp 2025-04-24}
+        - {description: "Project Workday", date: !!timestamp 2025-04-29}
+
+tests:
+    type: fixed date
+    important: yes
+    values:
+        - {description: "Project Presentations" , date: !!timestamp 2025-05-05}
+
+traveling:
+    type: fixed date
+    important: yes
+    values:
+        #- {description: "Jed traveling", date: !!timestamp 2025-02-26}
+        - {description: "Jed traveling", date: !!timestamp 2025-02-27}
+          
+homework:
+    type: event
+    values:
+      - {description: "HW1: SS"           , date: !!timestamp 2025-2-03}
+      - {description: "HW2: Stars"        , date: !!timestamp 2025-2-17}
+      - {description: "HW3: Exoplanets"   , date: !!timestamp 2025-3-10}
+      - {description: "HW4: Galaxies"     , date: !!timestamp 2025-4-07}
+      #- {description: "HW5: MCMC Methods" , date: !!timestamp 2025-4-11}
+      - {description: "HW6: Cosmology"    , date: !!timestamp 2025-4-28}
+
+quizzes:
+  type: event
+  values:
+    - {description: "Quiz 1", date: !!timestamp 2025-02-20}
+    - {description: "Quiz 2", date: !!timestamp 2025-04-10}
+    - {description: "Quiz 3", date: !!timestamp 2025-04-29}
+
+outputs:
+    html:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
+    latex:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
