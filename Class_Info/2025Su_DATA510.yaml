@@ -1,0 +1,86 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2025-05-12'
+  end_date: !!timestamp '2025-08-15'
+  class_days: [1]
+  #holiday_dates:
+  #extra_dates:
+    #- !!timestamp 2022-12-14
+
+Part 1:
+  type: topics
+  values:
+    - {ch: , description: "Syllabus and Research vs EDA", duration: 1}
+    - {ch: , description: "Understanding Git", duration: 1}
+    - {ch: , description: "Prof Dev: Alumni Panel", duration: 1}
+    - {ch: , description: "Scraping and modeling refresher", duration: 1}
+    - {ch: , description: "Prof Dev: Targeting and Networking", duration: 1}
+    - {ch: , description: "Publishing a homepage/portfolio with GH Pages", duration: 1}
+    - {ch: , description: "Prof Dev: Behavioral Interview Prep", duration: 1}
+    - {ch: , description: "Technical writing with Quarto", duration: 1}
+    - {ch: , description: "Prof Dev: Prepping for technical interviews", duration: 1}
+    - {ch: , description: "Prof Dev: Internal Mock Interviews", duration: 1}
+    #- {ch: , description: "Portfolio/Project Work", duration: 1}
+    #- {ch: , description: "Prof Dev: External Mock Interviews", duration: 1}
+    - {ch: , description: "Rough Draft Peer Feedback", duration: 1}
+    - {ch: , description: "Presentation Prep", duration: 1}
+
+
+
+Part 2:
+  type: topics
+  values:
+    - {ch: , description: "Project Brainstorming", duration: 1}
+    - {ch: , description: "Partner/Group Meet-ups and Brainstorming", duration: 1}
+    - {ch: , description: "Work on Proposals", duration: 1}
+    - {ch: , description: "Data Acquisition work", duration: 1}
+    - {ch: , description: "TBD", duration: 1}
+    - {ch: , description: "Data Wrangling Work", duration: 1}
+    - {ch: , description: "Data Summary work", duration: 1}
+    - {ch: , description: "Statistics Consultations?", duration: 1}
+    - {ch: , description: "Portfolio/Project Work", duration: 1}
+    - {ch: , description: "Machine Learning Consultations?", duration: 1}
+    #- {ch: , description: "Prof Dev: External Mock Interviews", duration: 1}
+    - {ch: , description: "Data Vis Consulting?", duration: 1}
+    - {ch: , description: "Peer Presentation Practice", duration: 1}
+
+
+tests:
+  type: fixed date
+  important: yes
+  values:
+    - {description: "External Mock Interviews in Portland", date: !!timestamp 2025-07-22 }
+    - {description: "Project Presentations in Portland",  date: !!timestamp 2025-08-12 }
+
+deadlines:
+  type: event
+  values:
+    - {description: "Project Proposal",  date: !!timestamp 2025-06-03 }
+    - {description: "Data Summary",  date: !!timestamp 2025-07-01 }
+    - {description: "Personal Portfolio",  date: !!timestamp 2025-07-15 }
+    - {description: "Rough Draft Write-up",  date: !!timestamp 2025-07-29 }
+    - {description: "Final Draft Write-up",  date: !!timestamp 2025-08-14 }
+    - {description: "Paper Critique 1",  date: !!timestamp 2025-05-27 }
+    - {description: "Paper Critique 2",  date: !!timestamp 2025-06-10 }
+    - {description: "Paper Critique 3",  date: !!timestamp 2025-06-24 }
+    - {description: "Paper Critique 4",  date: !!timestamp 2025-07-08 }
+    - {description: "Paper Critique 5",  date: !!timestamp 2025-07-22 }
+    - {description: "Paper Critique 6",  date: !!timestamp 2025-08-05 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+  latex:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+

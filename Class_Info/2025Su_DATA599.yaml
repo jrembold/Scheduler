@@ -1,0 +1,54 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2025-05-12'
+  end_date: !!timestamp '2025-08-15'
+  class_days: [2]
+  #holiday_dates:
+  #extra_dates:
+    #- !!timestamp 2022-12-14
+
+Content:
+  type: topics
+  values:
+    - {ch: , description: "Big Picture and Refreshers", duration: 1}
+    - {ch: , description: "Tooling: SSH, Docker Compose, Parquet", duration: 1}
+    - {ch: , description: "Introducing Airflow", duration: 1}
+    - {ch: , description: "TaskFlow and Intro to Warehousing", duration: 1}
+    - {ch: , description: "SCDs and Dashboarding", duration: 1}
+    - {ch: , description: "APIs and Spreadsheets", duration: 1}
+    - {ch: , description: "Document Databases", duration: 2}
+    - {ch: , description: "Graph Databases", duration: 2}
+    - {ch: , description: "Logs", duration: 1}
+    - {ch: , description: "Events", duration: 2}
+    - {ch: , description: "Sharing and Reflection Activities", duration: 1}
+
+deadlines:
+  type: event
+  values:
+    - {description: "Milestone 1",  date: !!timestamp 2025-06-17 }
+    - {description: "Milestone 2",  date: !!timestamp 2025-06-24 }
+    - {description: "Project Rotations 1 (Documentation Due)",  date: !!timestamp 2025-06-25 }
+    - {description: "Milestone 3",  date: !!timestamp 2025-07-08 }
+    - {description: "Milestone 4",  date: !!timestamp 2025-07-22 }
+    - {description: "Project Rotations 2 (Documentation Due)",  date: !!timestamp 2025-07-23 }
+    - {description: "Milestone 5",  date: !!timestamp 2025-08-05 }
+    - {description: "Milestone 6",  date: !!timestamp 2025-08-12 }
+    - {description: "Final Documentation Due",  date: !!timestamp 2025-08-13 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+  latex:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+
