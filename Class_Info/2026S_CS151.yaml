@@ -36,7 +36,6 @@ topics:
         - {ch: 12, description: "Data Structures", duration: 2}
         #- {ch: 4.7, description: "Recursion", duration: 1}
         - {ch: 9, description: "Algorithmic Analysis", duration: 3}
-        - {ch: , description: "Recursion", duration: 1}
         - {ch: , description: "Fun Libraries", duration: 1}
         - {ch: , description: "Fun Algorithms", duration: 1}
 
@@ -58,6 +57,12 @@ tests:
         - {description: "Midterm 1 (Ch 1 - 3, 7)" , date: !!timestamp 2026-02-20}
         - {description: "Midterm 2 (Ch 4-6, 8)" , date: !!timestamp 2026-04-03}
         - {description: "Final" , date: !!timestamp 2026-05-08}
+
+#traveling:
+    #type: fixed date
+    #important: yes
+    #values:
+        #- {description: "Jed traveling", date: !!timestamp 2026-02-20}
           
 homework:
     type: event
