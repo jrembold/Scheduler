@@ -1,0 +1,56 @@
+---
+
+calendar_info:
+  start_date: !!timestamp '2026-05-11'
+  end_date: !!timestamp '2026-08-14'
+  class_days: [1]
+  #holiday_dates:
+  #extra_dates:
+    #- !!timestamp 2022-12-14
+
+Content:
+  type: topics
+  values:
+    - {ch: , description: "Big Picture and Refreshers", duration: 1}
+    - {ch: , description: "Tooling: SSH, Docker Compose, Parquet, DuckDB", duration: 1}
+    - {ch: , description: "Introducing Airflow and the Project", duration: 1}
+    - {ch: , description: "Airflow Connections, TaskFlow, and Intro to Warehousing", duration: 1}
+    - {ch: , description: "SCDs and Dashboarding", duration: 1}
+    - {ch: , description: "APIs and Reliability", duration: 1}
+    - {ch: , description: "Document Databases", duration: 2}
+    - {ch: , description: "Graph Databases", duration: 2}
+    - {ch: , description: "Kafka Events", duration: 2}
+    - {ch: , description: "Metrics and Logs", duration: 1}
+    - {ch: , description: "Sharing and Reflection Activities", duration: 1}
+
+deadlines:
+  type: event
+  values:
+    - {description: "Airflow Access 1",  date: !!timestamp 2026-06-03 }
+    - {description: "Snapshots 1",  date: !!timestamp 2026-06-10 }
+    - {description: "Milestone 1",  date: !!timestamp 2026-06-17 }
+    - {description: "Milestone 2",  date: !!timestamp 2026-06-24 }
+    - {description: "Project Rotations 1 (Documentation Due)",  date: !!timestamp 2026-06-25 }
+    - {description: "Milestone 3",  date: !!timestamp 2026-07-08 }
+    - {description: "Milestone 4",  date: !!timestamp 2026-07-22 }
+    - {description: "Project Rotations 2 (Documentation Due)",  date: !!timestamp 2026-07-23 }
+    - {description: "Milestone 5",  date: !!timestamp 2026-08-05 }
+    - {description: "Milestone 6",  date: !!timestamp 2026-08-12 }
+    - {description: "Final Documentation Due",  date: !!timestamp 2026-08-13 }
+
+
+
+outputs:
+  html:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+  latex:
+    columns:
+      - Week
+      - Date
+      - Description
+      - Due
+
