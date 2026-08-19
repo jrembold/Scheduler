@@ -1,0 +1,122 @@
+---
+
+calendar_info:
+  start_date: !!timestamp 2026-08-24
+  end_date: !!timestamp 2026-12-04
+  class_days:
+      - 0
+      - 2
+      - 4
+  holiday_dates:
+      !!timestamp 2026-09-07: Labor Day
+      !!timestamp 2026-10-09: Mid-Semester Break
+      !!timestamp 2026-11-25: Fall Break
+      !!timestamp 2026-11-26: Fall Break
+      !!timestamp 2026-11-27: Fall Break
+  extra_dates:
+    - !!timestamp 2026-12-09
+
+topics:
+    type: topics
+    values:
+        - {ch:     , description: "Karel the Robot"           , duration: 4}
+        - {ch: 1    , description: "Introducing Python"           , duration: 2}
+        - {ch: 2    , description: "Control Statements"           , duration: 2}
+        - {ch: 3    , description: "Algorithms/Debugging"           , duration: 1}
+        - {ch: 7    , description: "Strings"                      , duration: 3}
+        - {ch: 4    , description: "Simple Graphics"              , duration: 2}
+        - {ch: 5    , description: "Functions"                    , duration: 2}
+        - {ch: 6    , description: "Writing Interactive Programs" , duration: 3}
+        - {ch: 8    , description: "Lists"                        , duration: 5}
+        #- {ch:     , description: "Debugging"      , duration: 1}
+        - {ch: 10    , description: "Classes and Objects"            , duration: 3}
+        - {ch: 13    , description: "Inheritance"            , duration: 1}
+        #- {ch: '6.6,7.5'    , description: "Formatting and Data Files", duration: 1}
+        - {ch: 11, description: "Dictionaries and Sets", duration: 2}
+        - {ch: 12, description: "Data Structures", duration: 1}
+        - {ch:     , description: "Requests"            , duration: 1}
+        #- {ch: 4.7, description: "Recursion", duration: 1}
+        - {ch: 9, description: "Algorithmic Analysis", duration: 4}
+        #- {ch: , description: "The Dev Experience", duration: 1}
+        - {ch: , description: "Fun Libraries", duration: 1}
+
+overviews:
+    type: fixed date
+    important: no
+    values:
+        #- {description: "Wordle Overview", date: !!timestamp 2023-02-03}
+        #- {description: "Breakout Overview", date: !!timestamp 2023-03-06}
+        #- {description: "Imageshop Overview", date: !!timestamp 2026-10-16}
+        - {description: "Enigma Overview", date: !!timestamp 2026-11-09}
+        - {description: "Adventure Overview", date: !!timestamp 2026-11-23}
+        #- {description: "Catch-up or Review Day", date: !!timestamp 2026-04-01}
+
+tests:
+    type: fixed date
+    important: yes
+    values:
+        - {description: "Midterm 1 (Ch 1 - 3, 7)" , date: !!timestamp 2026-10-02}
+        - {description: "Midterm 2 (Ch 4-6, 8)" , date: !!timestamp 2026-11-06}
+        - {description: "Final" , date: !!timestamp 2026-12-09}
+
+#traveling:
+    #type: fixed date
+    #important: yes
+    #values:
+        #- {description: "Jed traveling", date: !!timestamp 2026-02-20}
+          
+homework:
+    type: event
+    values:
+        - {description: "Problem Set 0: Setup"        , date: !!timestamp 2026-08-31}
+        - {description: "Problem Set 1: Karel"        , date: !!timestamp 2026-09-07}
+        - {description: "Problem Set 2: Algorithms"        , date: !!timestamp 2026-09-14}
+        - {description: "Problem Set 3: Strings"        , date: !!timestamp 2026-09-21}
+        - {description: "Project 1: Wordle"        , date: !!timestamp 2026-09-28}
+        - {description: "Problem Set 4: Graphics"        , date: !!timestamp 2026-10-12}
+        - {description: "Project 2: Breakout"        , date: !!timestamp 2026-10-19}
+        - {description: "Problem Set 5: Arrays"        , date: !!timestamp 2026-10-26}
+        - {description: "Project 3: ImageShop"        , date: !!timestamp 2026-11-02}
+        #- {description: "Problem Set 6"        , date: !!timestamp 2025-11-10}
+        - {description: "Project 4: Enigma"        , date: !!timestamp 2026-11-23}
+        - {description: "Project 5: Infinite Adventure"        , date: !!timestamp 2026-12-04}
+        #- {description: "Karel Contest", date: !!timestamp 2025-09-19}
+        #- {description: "Optional Graphics Contest", date: !!timestamp 2025-11-10}
+        #- {description: "Optional Game Contest", date: !!timestamp 2025-12-07}
+
+sections:
+  type: event
+  values:
+    - {description: "S1: Karel the Robot", date: !!timestamp 2026-09-02}
+    - {description: "S2: Simple Python and Control Statements", date: !!timestamp 2026-09-09}
+    ##- {description: "S3: Control Statements", date: !!timestamp 2025-09-20}
+    - {description: "S3: Strings", date: !!timestamp 2026-09-16}
+    - {description: "S4: Wordle", date: !!timestamp 2026-09-23}
+    - {description: "S5: Midterm 1 Prep", date: !!timestamp 2026-09-30}
+    - {description: "S6: Graphics", date: !!timestamp 2026-10-07}
+    - {description: "S7: Breaking out Pacman", date: !!timestamp 2026-10-14}
+    - {description: "S8: Lists", date: !!timestamp 2026-10-21}
+    - {description: "S9: Images", date: !!timestamp 2026-10-28}
+    - {description: "S10: Midterm 2 Prep", date: !!timestamp 2026-11-04}
+    #- {description: "S9: Image Manipulation", date: !!timestamp 2025-10-29}
+    #- {description: "S9: Classes and Objects", date: !!timestamp 2026-04-01}
+    - {description: "S11: Enigma", date: !!timestamp 2026-11-11}
+    - {description: "S12: Dictionaries", date: !!timestamp 2026-11-18}
+    - {description: "S13: Adventure", date: !!timestamp 2026-12-02}
+    #- {description: "S13: Final Prep (Optional)", date: !!timestamp 2026-04-29}
+
+outputs:
+    html:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due
+    latex:
+        columns:
+            - Week
+            - Date
+            - Chapter
+            - Description
+            - Due

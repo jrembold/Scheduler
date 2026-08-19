@@ -608,5 +608,6 @@ if __name__ == "__main__":
     elif args.json:
         calendar.generate_json()
     else:
+        print(f"There are {sum([1 for day in calendar.days if day.hasclass]) - 1} normal days of class this semester.")
         print()
         calendar.print_rich_table()
